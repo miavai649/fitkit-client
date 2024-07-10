@@ -4,7 +4,7 @@ import MobileNavbar from './MobileNavbar'
 
 const SiteHeader = () => {
   return (
-    <header className='w-full border-b bg-primary-500 shadow-lg'>
+    <header className='w-full border-b bg-primary-500 shadow-lg p-4'>
       <div className='flex h-14 justify-between items-center px-8 container mx-auto'>
         <div className='flex justify-between items-center '>
           {/* mobile view navigation bar */}
@@ -30,7 +30,9 @@ const SiteHeader = () => {
         <MainNavbar />
 
         <div>
-          <ShoppingBagIcon className='size-6 text-white text-lg' />
+          <button>
+            <ShoppingBagIcon className='size-6 text-white hover:text-secondary-500 text-lg' />
+          </button>
         </div>
       </div>
     </header>

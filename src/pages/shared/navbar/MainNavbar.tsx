@@ -1,14 +1,34 @@
-import { Button } from '@/components/ui/button'
-
-const mainNavItems = ['A', 'B', 'C']
+const mainNavItems = [
+  {
+    name: 'Home',
+    path: '/'
+  },
+  {
+    name: 'Products',
+    path: '/products'
+  },
+  {
+    name: 'About',
+    path: '/about'
+  },
+  {
+    name: 'Contact',
+    path: '/contact'
+  }
+]
 
 const MainNavbar = () => {
   return (
-    <div className='mr-4 hidden gap-2 md:flex'>
+    <div className='mr-4 hidden md:flex items-center space-x-6'>
       {mainNavItems.map((item, index) => (
-        <Button key={index} variant='link' className='text-white'>
-          {item}
-        </Button>
+        <button
+          key={index}
+          className='relative text-white font-medium transition-colors duration-200 
+                     hover:text-secondary-500 after:content-[""] after:absolute after:left-0 
+                     after:-bottom-1 after:w-0 after:h-[2px] after:bg-secondary-500 
+                     after:transition-all after:duration-300 hover:after:w-full'>
+          {item.name}
+        </button>
       ))}
     </div>
   )
