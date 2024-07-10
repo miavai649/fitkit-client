@@ -1,9 +1,9 @@
-import SiteHeader from './pages/shared/navbar/SiteHeader'
+import Home from './pages/home/Home'
 
 const App = () => {
   return (
-    <div className='flex min-h-screen flex-col'>
-      <SiteHeader />
+    <div>
+      <Home />
     </div>
   )
 }

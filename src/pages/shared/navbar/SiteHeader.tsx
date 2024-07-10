@@ -9,6 +9,8 @@ const SiteHeader = () => {
         <div className='flex justify-between items-center '>
           {/* mobile view navigation bar */}
           <MobileNavbar />
+
+          {/* logo position for main navigation bar */}
           <div className='hidden md:flex'>
             <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
               <span className='text-white'>Fit</span>
@@ -18,6 +20,7 @@ const SiteHeader = () => {
           </div>
         </div>
 
+        {/* logo position for mobile navigation bar */}
         <div className='flex md:hidden'>
           <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
             <span className='text-white'>Fit</span>
