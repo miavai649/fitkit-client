@@ -2,7 +2,7 @@ import { bannerImg } from '@/assets'
 
 const Banner = () => {
   return (
-    <div className='relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden m-0'>
+    <div className='relative w-full h-[400px] md:h-[500px] lg:h-[750px] overflow-hidden m-0'>
       <img
         src={bannerImg}
         alt='Banner Image'
@@ -12,10 +12,10 @@ const Banner = () => {
       />
       <div className='absolute inset-0 bg-black opacity-75'></div>
       <div className='absolute inset-0 flex flex-col items-center justify-center p-4 text-center'>
-        <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4'>
+        <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4'>
           Elevate Your Fitness Journey
         </h2>
-        <p className='text-lg md:text-xl lg:text-2xl text-white'>
+        <p className='text-xl md:text-2xl lg:text-3xl text-white'>
           Discover premium equipment and accessories for all your workout needs.
         </p>
       </div>
