@@ -1,7 +1,17 @@
-const CategoryCard = () => {
+import { TCategoryCardProps } from '@/types'
+
+const CategoryCard = ({ image, name }: TCategoryCardProps) => {
   return (
-    <div>
-      <h1>This is CategoryCard component</h1>
+    <div className='relative w-full h-[280px] overflow-hidden'>
+      <img
+        src={image}
+        alt='Category Image'
+        className='w-full h-full object-cover'
+      />
+      <div className='absolute inset-0 bg-black bg-opacity-75'></div>
+      <div className='absolute bottom-0 left-0 p-4'>
+        <h3 className='text-white text-2xl font-bold'>{name}</h3>
+      </div>
     </div>
   )
 }
