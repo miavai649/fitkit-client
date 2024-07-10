@@ -5,25 +5,6 @@ import { Menu as MenuIcon } from 'lucide-react'
 import { navbarItems } from './SiteHeader'
 import { Link } from 'react-router-dom'
 
-const mainNavItems = [
-  {
-    name: 'Home',
-    path: '/'
-  },
-  {
-    name: 'Products',
-    path: '/products'
-  },
-  {
-    name: 'About',
-    path: '/about'
-  },
-  {
-    name: 'Contact',
-    path: '/contact'
-  }
-]
-
 const MobileNavbar = () => {
   const [open, setOpen] = useState(false)
 

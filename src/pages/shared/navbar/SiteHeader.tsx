@@ -1,6 +1,7 @@
 import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 import MainNavbar from './MainNavbar'
 import MobileNavbar from './MobileNavbar'
+import { Link } from 'react-router-dom'
 
 export const navbarItems = [
   {
@@ -31,21 +32,25 @@ const SiteHeader = () => {
 
           {/* logo position for main navigation bar */}
           <div className='hidden md:flex'>
-            <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
-              <span className='text-white'>Fit</span>
-              <span className='text-secondary-500'>K</span>
-              <span className='text-white'>it</span>
-            </h2>
+            <Link to={'/'}>
+              <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
+                <span className='text-white'>Fit</span>
+                <span className='text-secondary-500'>K</span>
+                <span className='text-white'>it</span>
+              </h2>
+            </Link>
           </div>
         </div>
 
         {/* logo position for mobile navigation bar */}
         <div className='flex md:hidden'>
-          <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
-            <span className='text-white'>Fit</span>
-            <span className='text-secondary-500'>K</span>
-            <span className='text-white'>it</span>
-          </h2>
+          <Link to={'/'}>
+            <h2 className='md:text-center text-4xl font-extrabold tracking-wide'>
+              <span className='text-white'>Fit</span>
+              <span className='text-secondary-500'>K</span>
+              <span className='text-white'>it</span>
+            </h2>
+          </Link>
         </div>
 
         {/* main navigation bar */}
