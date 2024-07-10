@@ -13,7 +13,7 @@ const MobileNavbar = () => {
       {/* This button will trigger open the mobile sheet menu */}
       <SheetTrigger asChild>
         <Button variant='ghost' size='icon' className='md:hidden'>
-          <MenuIcon />
+          <MenuIcon className='text-white' />
         </Button>
       </SheetTrigger>
 
