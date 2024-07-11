@@ -4,6 +4,7 @@ import 'aos/dist/aos.css'
 import { useEffect } from 'react'
 
 const CategoryCard = ({ image, name }: TCategoryCardProps) => {
+  // initialize aos animation
   useEffect(() => {
     AOS.init({
       duration: 1000,
