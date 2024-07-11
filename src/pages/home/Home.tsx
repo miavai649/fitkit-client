@@ -1,3 +1,4 @@
+import ImgGallery from '@/components/ImgGallery/ImgGallery'
 import Banner from '../../components/Banner/Banner'
 import Categories from '../../components/Categories/Categories'
 
@@ -8,6 +9,7 @@ const Home = () => {
       <Banner />
       {/* category section */}
       <Categories />
+      <ImgGallery />
     </div>
   )
 }
