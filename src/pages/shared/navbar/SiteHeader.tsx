@@ -24,7 +24,7 @@ export const navbarItems = [
 
 const SiteHeader = () => {
   return (
-    <header className='w-full border-b bg-primary-500 shadow-lg p-4 m-0'>
+    <header className='w-full border-b bg-primary-500 shadow-lg p-4 m-0 sticky z-20 top-0'>
       <div className='flex h-14 justify-between items-center px-8 container mx-auto'>
         <div className='flex justify-between items-center '>
           {/* mobile view navigation bar */}
