@@ -20,3 +20,7 @@ export type TSearchBarProps = {
   search: string
   setSearch: React.Dispatch<React.SetStateAction<string>>
 }
+export type TSortingDropdownMenuProps = {
+  position: string
+  setPosition: React.Dispatch<React.SetStateAction<string>>
+}

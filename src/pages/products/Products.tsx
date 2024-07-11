@@ -1,16 +1,16 @@
-import { Button } from '@/components/ui/button'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuRadioGroup,
-  DropdownMenuRadioItem
-} from '@/components/ui/dropdown-menu'
 import { useState } from 'react'
 import FilteringDropdownMenu from '@/components/FilteringDropdownMenu/FilteringDropdownMenu'
 import SearchBar from '@/components/SearchBar/SearchBar'
+import SortingDropdownMenu from '@/components/SortingDropdownMenu/SortingDropdownMenu'
+import { dumbbells } from '@/assets'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle
+} from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
 
 const Products = () => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
@@ -48,26 +48,99 @@ const Products = () => {
           <SearchBar search={search} setSearch={setSearch} />
 
           {/* sorting product */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button className='bg-primary text-white'>Sort</Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className='w-56'>
-              <DropdownMenuLabel>Price</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuRadioGroup
-                value={position}
-                onValueChange={setPosition}>
-                <DropdownMenuRadioItem value='asc'>
-                  Low to High
-                </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value='desc'>
-                  High to Low
-                </DropdownMenuRadioItem>
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <SortingDropdownMenu position={position} setPosition={setPosition} />
         </div>
+      </div>
+      {/* Product grid */}
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto my-5'>
+        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
+          <CardHeader className='p-0'>
+            <img
+              src={dumbbells}
+              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
+            />
+          </CardHeader>
+          <CardContent className='p-4'>
+            {/* <div className='flex items-center justify-between'>
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </div> */}
+            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
+              Dumbbells
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </CardTitle>
+          </CardContent>
+          <CardFooter className='p-4 pt-2'>
+            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
+              View details
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
+          <CardHeader className='p-0'>
+            <img
+              src={dumbbells}
+              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
+            />
+          </CardHeader>
+          <CardContent className='p-4'>
+            {/* <div className='flex items-center justify-between'>
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </div> */}
+            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
+              Dumbbells
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </CardTitle>
+          </CardContent>
+          <CardFooter className='p-4 pt-2'>
+            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
+              View details
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
+          <CardHeader className='p-0'>
+            <img
+              src={dumbbells}
+              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
+            />
+          </CardHeader>
+          <CardContent className='p-4'>
+            {/* <div className='flex items-center justify-between'>
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </div> */}
+            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
+              Dumbbells
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </CardTitle>
+          </CardContent>
+          <CardFooter className='p-4 pt-2'>
+            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
+              View details
+            </Button>
+          </CardFooter>
+        </Card>
+        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
+          <CardHeader className='p-0'>
+            <img
+              src={dumbbells}
+              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
+            />
+          </CardHeader>
+          <CardContent className='p-4'>
+            {/* <div className='flex items-center justify-between'>
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </div> */}
+            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
+              Dumbbells
+              <p className='text-xl font-bold text-white'>$44.99</p>
+            </CardTitle>
+          </CardContent>
+          <CardFooter className='p-4 pt-2'>
+            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
+              View details
+            </Button>
+          </CardFooter>
+        </Card>
       </div>
     </section>
   )

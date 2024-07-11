@@ -30,7 +30,9 @@ const ImgGallery = () => {
         <h3 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mb:mb-8'>
           Be Inspired by Our Users
         </h3>
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 4 }}>
+        <ResponsiveMasonry
+          columnsCountBreakPoints={{ 350: 4 }}
+          className='mt-8'>
           <Masonry gutter='1rem'>
             {images.map((image, i) => (
               <PhotoView key={i} src={image}>
