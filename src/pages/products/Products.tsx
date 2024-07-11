@@ -17,9 +17,11 @@ type Checked = DropdownMenuCheckboxItemProps['checked']
 
 const Products = () => {
   // filter states
-  const [showStatusBar, setShowStatusBar] = useState<Checked>(false)
-  const [showActivityBar, setShowActivityBar] = useState<Checked>(false)
-  const [showPanel, setShowPanel] = useState<Checked>(false)
+  const [weights, setWeights] = useState<Checked>(false)
+  const [cardio, setCardio] = useState<Checked>(false)
+  const [gear, setGear] = useState<Checked>(false)
+  const [apparel, setApparel] = useState<Checked>(false)
+  console.log({ weights, cardio, gear, apparel })
   // sorting states
   const [position, setPosition] = useState('')
 
@@ -43,19 +45,22 @@ const Products = () => {
             <DropdownMenuLabel>Categories</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuCheckboxItem
-              checked={showStatusBar}
-              onCheckedChange={setShowStatusBar}>
-              Status Bar
+              checked={weights}
+              onCheckedChange={setWeights}>
+              Weights
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
-              checked={showActivityBar}
-              onCheckedChange={setShowActivityBar}>
-              Activity Bar
+              checked={cardio}
+              onCheckedChange={setCardio}>
+              Cardio
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem checked={gear} onCheckedChange={setGear}>
+              Gear
             </DropdownMenuCheckboxItem>
             <DropdownMenuCheckboxItem
-              checked={showPanel}
-              onCheckedChange={setShowPanel}>
-              Panel
+              checked={apparel}
+              onCheckedChange={setApparel}>
+              Apparel
             </DropdownMenuCheckboxItem>
           </DropdownMenuContent>
         </DropdownMenu>
