@@ -1,7 +1,6 @@
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -10,23 +9,27 @@ import {
   DropdownMenuRadioItem
 } from '@/components/ui/dropdown-menu'
 import { useState } from 'react'
-import { DropdownMenuCheckboxItemProps } from '@radix-ui/react-dropdown-menu'
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline'
-
-type Checked = DropdownMenuCheckboxItemProps['checked']
+import FilteringDropdownMenu from '@/components/FilteringDropdownMenu/FilteringDropdownMenu'
 
 const Products = () => {
-  // filter states
-  const [weights, setWeights] = useState<Checked>(false)
-  const [cardio, setCardio] = useState<Checked>(false)
-  const [gear, setGear] = useState<Checked>(false)
-  const [apparel, setApparel] = useState<Checked>(false)
-  console.log({ weights, cardio, gear, apparel })
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+
+  const handleCategoryChange = (category: string, checked: boolean) => {
+    setSelectedCategories((prev) =>
+      checked ? [...prev, category] : prev.filter((item) => item !== category)
+    )
+  }
+
+  console.log(selectedCategories)
+
   // sorting states
   const [position, setPosition] = useState('')
+  console.log('🚀 ~ Products ~ position:', position)
 
   // search state
   const [search, setSearch] = useState('')
+  console.log('🚀 ~ Products ~ search:', search)
 
   return (
     <section className='container'>
@@ -35,36 +38,12 @@ const Products = () => {
       </h2>
       <div className='flex justify-between'>
         {/* Filter button */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant='outline' className='border border-primary'>
-              Filter
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className='w-56'>
-            <DropdownMenuLabel>Categories</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuCheckboxItem
-              checked={weights}
-              onCheckedChange={setWeights}>
-              Weights
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={cardio}
-              onCheckedChange={setCardio}>
-              Cardio
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem checked={gear} onCheckedChange={setGear}>
-              Gear
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={apparel}
-              onCheckedChange={setApparel}>
-              Apparel
-            </DropdownMenuCheckboxItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <div className='flex gap-2'>
+        <FilteringDropdownMenu
+          selectedCategories={selectedCategories}
+          handleCategoryChange={handleCategoryChange}
+        />
+
+        <div className='flex gap-4'>
           {/* search bar */}
           <div className='flex items-center max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-primary-300 focus-within:border-primary'>
             <input

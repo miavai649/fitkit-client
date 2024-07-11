@@ -10,3 +10,8 @@ export type TBenefitCardProps = {
   description: string
   img: string
 }
+
+export type TFilterDropdownMenuProps = {
+  selectedCategories: string[]
+  handleCategoryChange: (category: string, checked: boolean) => void
+}
