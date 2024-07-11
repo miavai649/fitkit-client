@@ -1,5 +1,4 @@
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -22,7 +21,7 @@ const Products = () => {
   const [showActivityBar, setShowActivityBar] = useState<Checked>(false)
   const [showPanel, setShowPanel] = useState<Checked>(false)
   // sorting states
-  const [position, setPosition] = useState('bottom')
+  const [position, setPosition] = useState('')
 
   // search state
   const [search, setSearch] = useState('')
@@ -86,20 +85,19 @@ const Products = () => {
           {/* sorting product */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant='outline'>Open</Button>
+              <Button className='bg-primary text-white'>Sort</Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className='w-56'>
-              <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+              <DropdownMenuLabel>Price</DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuRadioGroup
                 value={position}
                 onValueChange={setPosition}>
-                <DropdownMenuRadioItem value='top'>Top</DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value='bottom'>
-                  Bottom
+                <DropdownMenuRadioItem value='asc'>
+                  Low to High
                 </DropdownMenuRadioItem>
-                <DropdownMenuRadioItem value='right'>
-                  Right
+                <DropdownMenuRadioItem value='desc'>
+                  High to Low
                 </DropdownMenuRadioItem>
               </DropdownMenuRadioGroup>
             </DropdownMenuContent>
