@@ -5,6 +5,7 @@ import {
   SparklesIcon,
   TrophyIcon
 } from '@heroicons/react/24/outline'
+import BenifitCard from './BenifitCard'
 
 const benefits = [
   {
@@ -48,24 +49,13 @@ const Benefits = () => {
         </p>
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8'>
           {benefits.map((benefit, index) => (
-            <div
+            <BenifitCard
               key={index}
-              className='bg-white rounded-lg shadow-lg overflow-hidden'>
-              <img
-                src={benefit.img}
-                alt={benefit.title}
-                className='w-full h-40 sm:h-48 object-cover'
-              />
-              <div className='p-4 md:p-6'>
-                <div className='text-primary mb-2 md:mb-4'>{benefit.icon}</div>
-                <h3 className='text-xl md:text-2xl font-semibold mb-2'>
-                  {benefit.title}
-                </h3>
-                <p className='text-gray-700 text-sm md:text-base'>
-                  {benefit.description}
-                </p>
-              </div>
-            </div>
+              icon={benefit.icon}
+              title={benefit.title}
+              description={benefit.description}
+              img={benefit.img}
+            />
           ))}
         </div>
       </div>
