@@ -35,3 +35,10 @@ export type TProduct = {
   quantity: number
   stock: 'in-stock' | 'out-stock'
 }
+
+export type TProductCardProps = {
+  name: string
+  images: string[]
+  price: number
+  delay: number
+}
