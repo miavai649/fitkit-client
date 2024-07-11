@@ -1,19 +1,10 @@
 import { TCategoryCardProps } from '@/types'
-import AOS from 'aos'
+
 import 'aos/dist/aos.css'
-import { useEffect } from 'react'
 
-const CategoryCard = ({ image, name }: TCategoryCardProps) => {
-  // initialize aos animation
-  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-      disable: 'mobile'
-    })
-  })
-
+const CategoryCard = ({ image, name, idx }: TCategoryCardProps) => {
   return (
-    <div data-aos='fade-left' data-aos-delay='10'>
+    <div data-aos='fade-up' data-aos-delay={idx}>
       <div className='relative w-full h-[100px] md:h-[280px] overflow-hidden rounded-lg group cursor-pointer'>
         <img
           src={image}

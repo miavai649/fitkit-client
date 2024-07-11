@@ -1,6 +1,7 @@
 export type TCategoryCardProps = {
   image: string
   name: string
+  idx: number
 }
 
 export type TBenefitCardProps = {

@@ -15,11 +15,12 @@ const Categories = () => {
         Categories for You
       </h3>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
-        {categories.map((category) => (
+        {categories.map((category, i) => (
           <CategoryCard
             key={category.name}
             image={category.image}
             name={category.name}
+            idx={i * 150}
           />
         ))}
       </div>
