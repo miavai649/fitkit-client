@@ -26,7 +26,7 @@ const images = [
 const ImgGallery = () => {
   return (
     <PhotoProvider>
-      <div className='container  mb-7 md:mb-14'>
+      <section className='container  mb-7 md:mb-14'>
         <h3 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-4 mb:mb-8'>
           Be Inspired by Our Users
         </h3>
@@ -44,7 +44,7 @@ const ImgGallery = () => {
             ))}
           </Masonry>
         </ResponsiveMasonry>
-      </div>
+      </section>
     </PhotoProvider>
   )
 }

@@ -2,7 +2,7 @@ import { bannerImg } from '@/assets'
 
 const Banner = () => {
   return (
-    <div className='relative w-full h-[400px] md:h-[500px] lg:h-[750px] overflow-hidden  mb-7 md:mb-14'>
+    <section className='relative w-full h-[400px] md:h-[500px] lg:h-[750px] overflow-hidden  mb-7 md:mb-14'>
       <img
         src={bannerImg}
         alt='Banner Image'
@@ -19,7 +19,7 @@ const Banner = () => {
           Discover premium equipment and accessories for all your workout needs.
         </p>
       </div>
-    </div>
+    </section>
   )
 }
 
