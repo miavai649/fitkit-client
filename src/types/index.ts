@@ -24,3 +24,14 @@ export type TSortingDropdownMenuProps = {
   position: string
   setPosition: React.Dispatch<React.SetStateAction<string>>
 }
+
+export type TProduct = {
+  _id: string
+  name: string
+  price: number
+  description: string
+  images: string[]
+  category: 'weights' | 'cardio' | 'gear' | 'apparel'
+  quantity: number
+  stock: 'in-stock' | 'out-stock'
+}
