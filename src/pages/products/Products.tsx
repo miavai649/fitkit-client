@@ -32,11 +32,11 @@ const Products = () => {
   console.log('🚀 ~ Products ~ search:', search)
 
   return (
-    <section className='container'>
+    <section className='container mb-7 md:mb-14'>
       <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold my-10 text-center'>
         Discover Our Wide Range of Products
       </h2>
-      <div className='flex justify-between'>
+      <div className='flex justify-between mb-4 mb:mb-8'>
         {/* Filter button */}
         <FilteringDropdownMenu
           selectedCategories={selectedCategories}
@@ -52,7 +52,7 @@ const Products = () => {
         </div>
       </div>
       {/* Product grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto my-5'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
         <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
           <CardHeader className='p-0'>
             <img
