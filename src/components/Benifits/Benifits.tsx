@@ -1,4 +1,4 @@
-import { apparelImg, cardioImg, gearImg, weightsImg } from '@/assets'
+import { cardioImg, gearImg, highQuality, weightsImg } from '@/assets'
 import {
   CheckCircleIcon,
   HeartIcon,
@@ -12,7 +12,7 @@ const benefits = [
     title: 'High Quality Equipment',
     description:
       'Our products are made from durable materials to ensure long-lasting use.',
-    img: apparelImg
+    img: highQuality
   },
   {
     icon: <HeartIcon className='h-12 w-12 text-primary' />,
@@ -35,15 +35,15 @@ const benefits = [
   }
 ]
 
-const BenefitsSection = () => {
+const Benefits = () => {
   return (
-    <section className='py-16 bg-gray-100'>
+    <section className='py-16 bg-primary-100 mb-7 md:mb-14'>
       <div className='container mx-auto text-center'>
-        <h2 className='text-3xl md:text-4xl font-bold mb-4'>
-          Why Choose Our Products
+        <h2 className='text-2xl md:text-3xl font-bold lg:text-4xl mb-2 md:mb-4'>
+          Unleash Your Potential
         </h2>
-        <p className='text-lg md:text-xl text-gray-700 mb-8'>
-          Discover the benefits of using our top-notch fitness equipment and
+        <p className='text-lg md:text-xl text-gray-700 mb-4 mb:mb-8'>
+          Achieve your fitness goals with our state-of-the-art equipment and
           accessories.
         </p>
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
@@ -69,4 +69,4 @@ const BenefitsSection = () => {
   )
 }
 
-export default BenefitsSection
+export default Benefits

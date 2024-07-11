@@ -2,7 +2,7 @@ import { TCategoryCardProps } from '@/types'
 
 const CategoryCard = ({ image, name }: TCategoryCardProps) => {
   return (
-    <div className='relative w-full h-[280px] overflow-hidden rounded-lg group cursor-pointer'>
+    <div className='relative w-full h-[100px] md:h-[280px] overflow-hidden rounded-lg group cursor-pointer'>
       <img
         src={image}
         alt='Category Image'
