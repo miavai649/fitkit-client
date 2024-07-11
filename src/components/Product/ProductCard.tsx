@@ -1,4 +1,3 @@
-import { dumbbells } from '@/assets'
 import { Button } from '../ui/button'
 import {
   Card,

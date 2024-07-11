@@ -6,6 +6,7 @@ import { ChevronDoubleRightIcon } from '@heroicons/react/24/outline'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
 import ProductCard from '../Product/ProductCard'
+import { Link } from 'react-router-dom'
 
 const Featured = () => {
   // initialize aos animation
@@ -40,9 +41,11 @@ const Featured = () => {
         ))}
       </div>
       <div className='text-center mt-8'>
-        <Button className='bg-secondary-500 text-white transition duration-300 ease-in-out transform hover:bg-secondary-600 hover:scale-105 hover:shadow-lg'>
-          Explore More <ChevronDoubleRightIcon className='h-5 w-5 ml-1' />
-        </Button>
+        <Link to={'/products'}>
+          <Button className='bg-secondary-500 text-white transition duration-300 ease-in-out transform hover:bg-secondary-600 hover:scale-105 hover:shadow-lg'>
+            Explore More <ChevronDoubleRightIcon className='h-5 w-5 ml-1' />
+          </Button>
+        </Link>
       </div>
     </section>
   )
