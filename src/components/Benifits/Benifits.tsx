@@ -43,11 +43,11 @@ const Benefits = () => {
         <h2 className='text-2xl md:text-3xl lg:text-4xl font-bold  mb-2 md:mb-4'>
           Unleash Your Potential
         </h2>
-        <p className='text-base md:text-xl text-primary-400 mb-4 md:mb-8'>
+        <p className='text-base md:text-xl text-primary-400 mb-2 md:mb-4'>
           Achieve your fitness goals with our state-of-the-art equipment and
           accessories.
         </p>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 '>
           {benefits.map((benefit, index) => (
             <BenifitCard
               key={index}
