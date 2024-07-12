@@ -72,7 +72,10 @@ const ProductDetails = () => {
             </div>
 
             <button
-              className='w-full md:w-auto bg-secondary-500 hover:bg-secondary text-white py-2 px-4 rounded-md '
+              className={`w-full md:w-auto bg-secondary-500 hover:bg-secondary text-white py-2 px-4 rounded-md  ${
+                product?.data?.stock === 'out-stock' &&
+                'bg-primary-400 hover:bg-primary-400 cursor-not-allowed'
+              }`}
               disabled={product?.data?.stock === 'out-stock'}>
               Add to Cart
             </button>

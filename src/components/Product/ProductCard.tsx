@@ -39,9 +39,13 @@ const ProductCard = ({ images, name, price, delay, id }: TProductCardProps) => {
         </CardTitle>
       </CardContent>
       <CardFooter className='p-3 md:p-4 pt-2'>
-        <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-          <Link to={`/products/${id}`}>View details</Link>
-        </Button>
+        <div className='w-full'>
+          <Link to={`/products/${id}`}>
+            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
+              View details
+            </Button>
+          </Link>
+        </div>
       </CardFooter>
     </Card>
   )
