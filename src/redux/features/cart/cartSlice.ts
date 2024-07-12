@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { toast } from 'sonner'
 
-export type TProduct = {
+export type TCartProduct = {
   _id: string
   name: string
   price: number
@@ -14,7 +14,7 @@ export type TProduct = {
   orderPrice: number
 }
 
-const initialState: TProduct[] = []
+const initialState: TCartProduct[] = []
 
 export const cartSlice = createSlice({
   name: 'cart',
@@ -56,11 +56,14 @@ export const cartSlice = createSlice({
         findProductById.orderPrice =
           findProductById.orderQuantity * findProductById.price
       }
+    },
+    removeFromCart: (state, action) => {
+      return state.filter((item) => item._id !== action.payload)
     }
   }
 })
 
-export const { addToCart, increaseQuantity, decreaseQuantity } =
+export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart } =
   cartSlice.actions
 
 export default cartSlice.reducer
