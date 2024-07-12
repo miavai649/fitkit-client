@@ -7,22 +7,22 @@ import {
 } from '@/redux/features/cart/cartSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { TrashIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = () => {
   const { cart } = useAppSelector((state) => state)
-
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
 
-  // handle function decrease quantity button
+  // Handle function decrease quantity button
   const handleDecreaseQuantity = (product: TCartProduct) => {
     dispatch(decreaseQuantity(product?._id))
-
     if (product?.orderQuantity === 1) {
       dispatch(removeFromCart(product?._id))
     }
   }
 
-  // sum subtotal price for cart products
+  // Sum subtotal price for cart products
   const subTotalPrice = cart.reduce((acc: number, product: any) => {
     return acc + product.orderPrice
   }, 0)
@@ -31,33 +31,33 @@ const Cart = () => {
   const totalPrice = (subTotalPrice + shippingCost).toFixed(2)
 
   return (
-    <div className='pt-10  mb-7 md:mb-14'>
+    <div className='pt-10 mb-7 md:mb-14'>
       {cart.length === 0 ? (
-        <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center'>
-          Your Cart is Empty
-        </h1>
-      ) : (
-        <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center'>
-          {cart.length} {cart.length === 1 ? 'Item' : 'Items'} in Your Cart
-        </h1>
-      )}
-
-      {cart.length === 0 ? (
-        <div className='container text-center'>
+        <div className='text-center'>
+          <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6'>
+            Your Cart is Empty
+          </h1>
           <p className='text-lg md:text-xl text-gray-600 mb-6'>
             It looks like you haven't added any items to your cart yet. Browse
             our products to find something you like.
           </p>
           <button
             className='bg-secondary-500 text-white py-2 px-4 rounded hover:bg-secondary-600'
-            // onClick={() => navigate('/products')}
-          >
+            onClick={() => navigate('/products')}>
             Shop Now
           </button>
         </div>
       ) : (
+        <div className='text-center'>
+          <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6'>
+            {cart.length} {cart.length === 1 ? 'Item' : 'Items'} in Your Cart
+          </h1>
+        </div>
+      )}
+
+      {cart.length > 0 && (
         <div className='mx-auto max-w-4xl px-4 md:flex md:space-x-4'>
-          {/* products */}
+          {/* Products */}
           <div className='rounded-lg md:w-2/3'>
             {cart?.map((product) => (
               <div
@@ -113,7 +113,7 @@ const Cart = () => {
             ))}
           </div>
 
-          {/* sub total */}
+          {/* Sub total */}
           <div className='mt-6 h-full rounded-lg border bg-white p-4 shadow-md md:mt-0 md:w-1/3'>
             <div className='mb-2 flex justify-between'>
               <p className='text-gray-700'>Subtotal</p>
@@ -130,7 +130,7 @@ const Cart = () => {
                 <p className='mb-1 text-lg font-bold'>${totalPrice} USD</p>
               </div>
             </div>
-            <button className='mt-4 w-full rounded-md bg-blue-500 py-1.5 font-medium text-blue-50 hover:bg-blue-600'>
+            <button className='mt-4 w-full rounded-md bg-primary-500 py-1.5 font-medium text-blue-50 hover:bg-primary'>
               Check out
             </button>
           </div>
