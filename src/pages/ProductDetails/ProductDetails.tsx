@@ -2,7 +2,6 @@ import { useGetSingleProductsQuery } from '@/redux/api/api'
 import { useParams } from 'react-router-dom'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
-import { TProduct } from '@/types'
 import { useAppDispatch } from '@/redux/hooks'
 import { addToCart } from '@/redux/features/cart/cartSlice'
 
@@ -12,19 +11,6 @@ const ProductDetails = () => {
   const { data: product } = useGetSingleProductsQuery({ id })
 
   const dispatch = useAppDispatch()
-
-  // const handleAddToCart = (product: TProduct) => {
-  //   const cartData = {
-  //     id: product._id,
-  //     name: product.name,
-  //     price: product.price,
-  //     coverImg: product.images[0],
-  //     quantity: product.quantity,
-  //     orderQuantity: 1,
-  //     orderPrice: product.price
-  //   }
-  //   dispatch(addToCart(cartData))
-  // }
 
   return (
     <PhotoProvider>
