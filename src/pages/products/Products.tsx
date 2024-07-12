@@ -2,13 +2,9 @@ import { useCallback, useState } from 'react'
 import FilteringDropdownMenu from '@/components/FilteringDropdownMenu/FilteringDropdownMenu'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import SortingDropdownMenu from '@/components/SortingDropdownMenu/SortingDropdownMenu'
-import {
-  useGetAllProductsQuery,
-  useGetCategoryProductsQuery
-} from '@/redux/api/api'
+import { useGetAllProductsQuery } from '@/redux/api/api'
 import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
-import { Skeleton } from '@/components/ui/skeleton'
 import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 
 const Products = () => {
@@ -31,11 +27,6 @@ const Products = () => {
     categories: selectedCategories,
     sort
   })
-  const { data } = useGetCategoryProductsQuery({
-    category: 'gear'
-  })
-
-  console.log('🚀 ~ Products ~ data:', data)
 
   const debounce = (func: any, wait: number) => {
     let timeout: ReturnType<typeof setTimeout>

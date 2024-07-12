@@ -11,7 +11,6 @@ export const baseApi = createApi({
           { searchTerm, categories, sort },
           { arrayFormat: 'comma', encode: false }
         )
-        console.log(queryUrl)
         return {
           url: `/product?${queryUrl}`,
           method: 'GET'
@@ -19,10 +18,14 @@ export const baseApi = createApi({
       }
     }),
     getCategoryProducts: builder.query({
-      query: ({ category }) => ({
-        url: `/product/category/${category}`,
-        method: 'GET'
-      })
+      query: ({ category }) => {
+        console.log('🚀 ~ category:', category)
+
+        return {
+          url: `/product/category/${category}`,
+          method: 'GET'
+        }
+      }
     })
   })
 })

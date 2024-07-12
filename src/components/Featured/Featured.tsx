@@ -7,7 +7,6 @@ import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
 import ProductCard from '../Product/ProductCard'
 import { Link } from 'react-router-dom'
-import { Skeleton } from '../ui/skeleton'
 import ProductCardSkeleton from '../Product/ProductCardSkeleton'
 
 const Featured = () => {
