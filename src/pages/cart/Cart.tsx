@@ -2,7 +2,6 @@ import { useAppSelector } from '@/redux/hooks'
 
 const Cart = () => {
   const { cart } = useAppSelector((state) => state)
-  console.log('🚀 ~ Cart ~ cart:', cart)
 
   return (
     <div className='pt-10'>

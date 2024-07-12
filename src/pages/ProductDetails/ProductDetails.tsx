@@ -2,7 +2,7 @@ import { useGetSingleProductsQuery } from '@/redux/api/api'
 import { useParams } from 'react-router-dom'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
-import { useAppDispatch } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { addToCart } from '@/redux/features/cart/cartSlice'
 
 const ProductDetails = () => {
@@ -76,10 +76,7 @@ const ProductDetails = () => {
             </div>
 
             <button
-              className={`w-full md:w-auto bg-secondary-500 hover:bg-secondary text-white py-2 px-4 rounded-md  ${
-                product?.data?.stock === 'out-stock' &&
-                'bg-primary-400 hover:bg-primary-400 cursor-not-allowed'
-              }`}
+              className={`w-full md:w-auto bg-secondary-500 hover:bg-secondary text-white py-2 px-4 rounded-md  disabled:bg-primary-400  disabled:cursor-not-allowed`}
               disabled={product?.data?.stock === 'out-stock'}
               onClick={() => dispatch(addToCart(product?.data))}>
               Add to Cart

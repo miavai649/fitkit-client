@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { toast } from 'sonner'
 
 export type TProduct = {
   _id: string
@@ -30,7 +31,7 @@ export const cartSlice = createSlice({
           existingProduct.orderPrice =
             existingProduct.orderQuantity * existingProduct.price
         } else {
-          console.log('Cannot add more than available quantity.')
+          toast.error('Cannot add more than available quantity.')
         }
       } else {
         state.push({
