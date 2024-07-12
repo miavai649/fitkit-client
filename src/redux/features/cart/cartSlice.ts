@@ -1,22 +1,52 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-type TCart = {
-  id: string
+export type TProduct = {
+  _id: string
   name: string
   price: number
-  coverImg: string
+  description: string
+  images: string[]
+  category: 'weights' | 'cardio' | 'gear' | 'apparel'
   quantity: number
+  stock: 'in-stock' | 'out-stock'
   orderQuantity: number
+  orderPrice: number
 }
 
-const initialState: TCart[] = []
+const initialState: TProduct[] = []
 
 export const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
     addToCart: (state, action) => {
-      state.push(action.payload)
+      // check if product already exists in cart
+      const existingProduct = state.find(
+        (item) => item._id === action.payload._id
+      )
+      if (existingProduct) {
+        if (existingProduct.orderQuantity < existingProduct.quantity) {
+          existingProduct.orderQuantity += 1
+          existingProduct.orderPrice =
+            existingProduct.orderQuantity * existingProduct.price
+        } else {
+          console.log('Cannot add more than available quantity.')
+        }
+      } else {
+        state.push({
+          ...action.payload,
+          orderQuantity: 1,
+          orderPrice: action.payload.price
+        })
+      }
+
+      // product added into redux local state
+      // state.push({
+      //   ...action.payload,
+
+      //   orderQuantity: 1,
+      //   orderPrice: action.payload.price
+      // })
     }
   }
 })

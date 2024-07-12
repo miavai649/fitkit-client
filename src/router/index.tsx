@@ -1,6 +1,7 @@
 import MainLayout from '@/components/layout/MainLayout'
 import About from '@/pages/about/About'
 import CategoryProducts from '@/pages/categoryProducts/CategoryProducts'
+import Checkout from '@/pages/checkout/Checkout'
 import Home from '@/pages/home/Home'
 import ProductDetails from '@/pages/ProductDetails/ProductDetails'
 import ProductManagement from '@/pages/productManagement/ProductManagement'
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />
+      },
+      {
+        path: '/checkout',
+        element: <Checkout />
       }
     ]
   }

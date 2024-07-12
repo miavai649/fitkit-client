@@ -30,7 +30,7 @@ export const baseApi = createApi({
     }),
     getSingleProducts: builder.query({
       query: ({ id }) => {
-        console.log('🚀 ~ category:', id)
+        // console.log('🚀 ~ category:', id)
 
         return {
           url: `/product/${id}`,
