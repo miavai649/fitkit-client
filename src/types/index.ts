@@ -17,12 +17,12 @@ export type TFilterDropdownMenuProps = {
 }
 
 export type TSearchBarProps = {
-  search: string
-  setSearch: React.Dispatch<React.SetStateAction<string>>
+  searchTerm: string
+  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
 }
 export type TSortingDropdownMenuProps = {
-  position: string
-  setPosition: React.Dispatch<React.SetStateAction<string>>
+  sort: string
+  setSort: React.Dispatch<React.SetStateAction<string>>
 }
 
 export type TProduct = {

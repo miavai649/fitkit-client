@@ -10,10 +10,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { TSortingDropdownMenuProps } from '@/types'
 
-const SortingDropdownMenu = ({
-  position,
-  setPosition
-}: TSortingDropdownMenuProps) => {
+const SortingDropdownMenu = ({ sort, setSort }: TSortingDropdownMenuProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -22,7 +19,7 @@ const SortingDropdownMenu = ({
       <DropdownMenuContent className='w-56'>
         <DropdownMenuLabel>Price</DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+        <DropdownMenuRadioGroup value={sort} onValueChange={setSort}>
           <DropdownMenuRadioItem value='asc'>Low to High</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value='desc'>
             High to Low

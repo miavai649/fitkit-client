@@ -6,9 +6,19 @@ import {
   CardHeader,
   CardTitle
 } from '../ui/card'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 import { TProductCardProps } from '@/types'
+import { useEffect } from 'react'
 
 const ProductCard = ({ images, name, price, delay }: TProductCardProps) => {
+  // initialize aos animation
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      disable: 'mobile'
+    })
+  })
   return (
     <Card
       className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'

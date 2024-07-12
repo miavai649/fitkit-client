@@ -11,9 +11,17 @@ import {
   CardTitle
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { useGetAllProductsQuery } from '@/redux/api/api'
+import ProductCard from '@/components/Product/ProductCard'
+import { TProduct } from '@/types'
 
 const Products = () => {
+  // filter states
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
+  // sorting states
+  const [sort, setSort] = useState('')
+  // search state
+  const [searchTerm, setSearchTerm] = useState('')
 
   const handleCategoryChange = (category: string, checked: boolean) => {
     setSelectedCategories((prev) =>
@@ -21,15 +29,20 @@ const Products = () => {
     )
   }
 
-  console.log(selectedCategories)
+  // get all products api fetched from rtk query
+  const {
+    data: products,
+    error,
+    isLoading
+  } = useGetAllProductsQuery({
+    searchTerm,
+    categories: selectedCategories,
+    sort
+  })
 
-  // sorting states
-  const [position, setPosition] = useState('')
-  console.log('🚀 ~ Products ~ position:', position)
-
-  // search state
-  const [search, setSearch] = useState('')
-  console.log('🚀 ~ Products ~ search:', search)
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
 
   return (
     <section className='container mb-7 md:mb-14'>
@@ -45,102 +58,23 @@ const Products = () => {
 
         <div className='flex gap-4'>
           {/* search bar */}
-          <SearchBar search={search} setSearch={setSearch} />
+          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
           {/* sorting product */}
-          <SortingDropdownMenu position={position} setPosition={setPosition} />
+          <SortingDropdownMenu sort={sort} setSort={setSort} />
         </div>
       </div>
       {/* Product grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
-        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
-          <CardHeader className='p-0'>
-            <img
-              src={dumbbells}
-              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
-            />
-          </CardHeader>
-          <CardContent className='p-4'>
-            {/* <div className='flex items-center justify-between'>
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </div> */}
-            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
-              Dumbbells
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </CardTitle>
-          </CardContent>
-          <CardFooter className='p-4 pt-2'>
-            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-              View details
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
-          <CardHeader className='p-0'>
-            <img
-              src={dumbbells}
-              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
-            />
-          </CardHeader>
-          <CardContent className='p-4'>
-            {/* <div className='flex items-center justify-between'>
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </div> */}
-            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
-              Dumbbells
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </CardTitle>
-          </CardContent>
-          <CardFooter className='p-4 pt-2'>
-            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-              View details
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
-          <CardHeader className='p-0'>
-            <img
-              src={dumbbells}
-              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
-            />
-          </CardHeader>
-          <CardContent className='p-4'>
-            {/* <div className='flex items-center justify-between'>
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </div> */}
-            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
-              Dumbbells
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </CardTitle>
-          </CardContent>
-          <CardFooter className='p-4 pt-2'>
-            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-              View details
-            </Button>
-          </CardFooter>
-        </Card>
-        <Card className='bg-primary-500 rounded-lg shadow-lg overflow-hidden'>
-          <CardHeader className='p-0'>
-            <img
-              src={dumbbells}
-              className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
-            />
-          </CardHeader>
-          <CardContent className='p-4'>
-            {/* <div className='flex items-center justify-between'>
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </div> */}
-            <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
-              Dumbbells
-              <p className='text-xl font-bold text-white'>$44.99</p>
-            </CardTitle>
-          </CardContent>
-          <CardFooter className='p-4 pt-2'>
-            <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-              View details
-            </Button>
-          </CardFooter>
-        </Card>
+        {products?.data?.map((product: TProduct, i: number) => (
+          <ProductCard
+            key={product?._id}
+            name={product?.name}
+            images={product?.images}
+            price={product?.price}
+            delay={i * 10}
+          />
+        ))}
       </div>
     </section>
   )
