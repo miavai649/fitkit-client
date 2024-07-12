@@ -1,16 +1,7 @@
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import FilteringDropdownMenu from '@/components/FilteringDropdownMenu/FilteringDropdownMenu'
 import SearchBar from '@/components/SearchBar/SearchBar'
 import SortingDropdownMenu from '@/components/SortingDropdownMenu/SortingDropdownMenu'
-import { dumbbells } from '@/assets'
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle
-} from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
@@ -23,22 +14,33 @@ const Products = () => {
   // search state
   const [searchTerm, setSearchTerm] = useState('')
 
-  const handleCategoryChange = (category: string, checked: boolean) => {
+  const handleCategory = (category: string, checked: boolean) => {
     setSelectedCategories((prev) =>
       checked ? [...prev, category] : prev.filter((item) => item !== category)
     )
   }
 
   // get all products api fetched from rtk query
-  const {
-    data: products,
-    error,
-    isLoading
-  } = useGetAllProductsQuery({
+  const { data: products, isLoading } = useGetAllProductsQuery({
     searchTerm,
     categories: selectedCategories,
     sort
   })
+
+  const debounce = (func: any, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout>
+    return (...args: any[]) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => func(...args), wait)
+    }
+  }
+
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      setSearchTerm(value)
+    }, 800),
+    []
+  )
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -53,12 +55,15 @@ const Products = () => {
         {/* Filter button */}
         <FilteringDropdownMenu
           selectedCategories={selectedCategories}
-          handleCategoryChange={handleCategoryChange}
+          handleCategory={handleCategory}
         />
 
         <div className='flex gap-4'>
           {/* search bar */}
-          <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <SearchBar
+            searchTerm={searchTerm}
+            debouncedSearch={debouncedSearch}
+          />
 
           {/* sorting product */}
           <SortingDropdownMenu sort={sort} setSort={setSort} />

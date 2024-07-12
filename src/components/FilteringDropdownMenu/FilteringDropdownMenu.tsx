@@ -11,7 +11,7 @@ import { TFilterDropdownMenuProps } from '@/types'
 
 const FilteringDropdownMenu = ({
   selectedCategories,
-  handleCategoryChange
+  handleCategory
 }: TFilterDropdownMenuProps) => {
   return (
     <DropdownMenu>
@@ -25,28 +25,22 @@ const FilteringDropdownMenu = ({
         <DropdownMenuSeparator />
         <DropdownMenuCheckboxItem
           checked={selectedCategories.includes('weights')}
-          onCheckedChange={(checked) =>
-            handleCategoryChange('weights', checked)
-          }>
+          onCheckedChange={(checked) => handleCategory('weights', checked)}>
           Weights
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={selectedCategories.includes('cardio')}
-          onCheckedChange={(checked) =>
-            handleCategoryChange('cardio', checked)
-          }>
+          onCheckedChange={(checked) => handleCategory('cardio', checked)}>
           Cardio
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={selectedCategories.includes('gear')}
-          onCheckedChange={(checked) => handleCategoryChange('gear', checked)}>
+          onCheckedChange={(checked) => handleCategory('gear', checked)}>
           Gear
         </DropdownMenuCheckboxItem>
         <DropdownMenuCheckboxItem
           checked={selectedCategories.includes('apparel')}
-          onCheckedChange={(checked) =>
-            handleCategoryChange('apparel', checked)
-          }>
+          onCheckedChange={(checked) => handleCategory('apparel', checked)}>
           Apparel
         </DropdownMenuCheckboxItem>
       </DropdownMenuContent>

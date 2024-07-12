@@ -13,12 +13,12 @@ export type TBenefitCardProps = {
 
 export type TFilterDropdownMenuProps = {
   selectedCategories: string[]
-  handleCategoryChange: (category: string, checked: boolean) => void
+  handleCategory: (category: string, checked: boolean) => void
 }
 
 export type TSearchBarProps = {
   searchTerm: string
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+  debouncedSearch: (value: string) => void
 }
 export type TSortingDropdownMenuProps = {
   sort: string
