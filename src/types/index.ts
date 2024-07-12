@@ -37,6 +37,7 @@ export type TProduct = {
 }
 
 export type TProductCardProps = {
+  id: string
   name: string
   images: string[]
   price: number

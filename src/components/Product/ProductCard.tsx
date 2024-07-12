@@ -10,8 +10,9 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { TProductCardProps } from '@/types'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
-const ProductCard = ({ images, name, price, delay }: TProductCardProps) => {
+const ProductCard = ({ images, name, price, delay, id }: TProductCardProps) => {
   // initialize aos animation
   useEffect(() => {
     AOS.init({
@@ -39,7 +40,7 @@ const ProductCard = ({ images, name, price, delay }: TProductCardProps) => {
       </CardContent>
       <CardFooter className='p-3 md:p-4 pt-2'>
         <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
-          View details
+          <Link to={`/products/${id}`}>View details</Link>
         </Button>
       </CardFooter>
     </Card>

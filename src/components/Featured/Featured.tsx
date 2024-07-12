@@ -35,6 +35,7 @@ const Featured = () => {
             ) : (
               // if loading false ==> product card
               <ProductCard
+                id={product?._id}
                 name={product?.name}
                 images={product?.images}
                 price={product?.price}
