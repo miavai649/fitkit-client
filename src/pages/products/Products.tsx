@@ -5,6 +5,8 @@ import SortingDropdownMenu from '@/components/SortingDropdownMenu/SortingDropdow
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
+import { Skeleton } from '@/components/ui/skeleton'
+import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 
 const Products = () => {
   // filter states
@@ -42,10 +44,6 @@ const Products = () => {
     []
   )
 
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-
   return (
     <section className='container mb-7 md:mb-14'>
       <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold my-10 text-center'>
@@ -72,13 +70,20 @@ const Products = () => {
       {/* Product grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
         {products?.data?.map((product: TProduct, i: number) => (
-          <ProductCard
-            key={product?._id}
-            name={product?.name}
-            images={product?.images}
-            price={product?.price}
-            delay={i * 10}
-          />
+          <div key={product?._id}>
+            {isLoading ? (
+              // if loading true ==> skeleton
+              <ProductCardSkeleton />
+            ) : (
+              // if loading false ==> product card
+              <ProductCard
+                name={product?.name}
+                images={product?.images}
+                price={product?.price}
+                delay={i * 10}
+              />
+            )}
+          </div>
         ))}
       </div>
     </section>

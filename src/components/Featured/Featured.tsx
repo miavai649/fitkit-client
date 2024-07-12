@@ -7,6 +7,8 @@ import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
 import ProductCard from '../Product/ProductCard'
 import { Link } from 'react-router-dom'
+import { Skeleton } from '../ui/skeleton'
+import ProductCardSkeleton from '../Product/ProductCardSkeleton'
 
 const Featured = () => {
   // initialize aos animation
@@ -20,10 +22,6 @@ const Featured = () => {
   // get all products
   const { data: products, isLoading } = useGetAllProductsQuery({})
 
-  if (isLoading) {
-    return <p>Loading...</p>
-  }
-
   return (
     <section className='container mb-7 md:mb-14'>
       <h3 className='text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-8'>
@@ -31,13 +29,20 @@ const Featured = () => {
       </h3>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto my-5'>
         {products?.data?.slice(0, 4).map((product: TProduct, i: number) => (
-          <ProductCard
-            key={product?._id}
-            name={product?.name}
-            images={product?.images}
-            price={product?.price}
-            delay={i * 150}
-          />
+          <div key={product?._id}>
+            {isLoading ? (
+              // if loading true ==> skeleton
+              <ProductCardSkeleton />
+            ) : (
+              // if loading false ==> product card
+              <ProductCard
+                name={product?.name}
+                images={product?.images}
+                price={product?.price}
+                delay={i * 150}
+              />
+            )}
+          </div>
         ))}
       </div>
       <div className='text-center mt-8'>

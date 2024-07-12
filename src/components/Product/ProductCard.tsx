@@ -27,16 +27,17 @@ const ProductCard = ({ images, name, price, delay }: TProductCardProps) => {
       <CardHeader className='p-0'>
         <img
           src={images[0]}
-          className='w-full h-64 object-cover rounded-t-lg overflow-hidden'
+          className='w-full h-48 md:h-64 object-cover rounded-t-lg overflow-hidden'
+          alt={name}
         />
       </CardHeader>
-      <CardContent className='p-4'>
-        <CardTitle className='mt-2 text-xl font-semibold text-white flex justify-between'>
+      <CardContent className='p-3 md:p-4'>
+        <CardTitle className='mt-2 text-lg md:text-xl font-semibold text-white flex justify-between'>
           {name}
-          <p className='text-xl font-bold text-white'>${price}</p>
+          <p className='text-lg md:text-xl font-bold text-white'>${price}</p>
         </CardTitle>
       </CardContent>
-      <CardFooter className='p-4 pt-2'>
+      <CardFooter className='p-3 md:p-4 pt-2'>
         <Button className='w-full bg-secondary-500 text-white transition-all duration-300 ease-out transform hover:bg-primary-600 hover:-translate-y-1 hover:shadow-xl'>
           View details
         </Button>
