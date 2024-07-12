@@ -1,5 +1,6 @@
 import MainLayout from '@/components/layout/MainLayout'
 import About from '@/pages/about/About'
+import Cart from '@/pages/cart/Cart'
 import CategoryProducts from '@/pages/categoryProducts/CategoryProducts'
 import Checkout from '@/pages/checkout/Checkout'
 import Home from '@/pages/home/Home'
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />
+      },
+      {
+        path: '/cart',
+        element: <Cart />
       }
     ]
   }

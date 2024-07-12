@@ -60,9 +60,7 @@ const SiteHeader = () => {
         <MainNavbar />
 
         <div className='relative'>
-          <Link
-            to={'/checkout'}
-            className='text-body text-2xl flex items-center'>
+          <Link to={'/cart'} className='text-body text-2xl flex items-center'>
             <ShoppingCart className='size-6 text-white hover:text-secondary-500 text-lg' />
             {cart.length > 0 && (
               <div className='ml-2 bg-red-500 text-white w-4 h-4 text-xs rounded-full flex items-center justify-center -top-2 -right-2 absolute'>
