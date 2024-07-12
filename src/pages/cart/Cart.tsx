@@ -1,10 +1,13 @@
-import { useAppSelector } from '@/redux/hooks'
+import { increaseQuantity } from '@/redux/features/cart/cartSlice'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 
 const Cart = () => {
   const { cart } = useAppSelector((state) => state)
 
+  const dispatch = useAppDispatch()
+
   return (
-    <div className='pt-10'>
+    <div className='pt-10  mb-7 md:mb-14'>
       <h1 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-center'>
         Cart Items
       </h1>
@@ -14,35 +17,35 @@ const Cart = () => {
           {cart?.map((product) => (
             <div
               key={product?._id}
-              className='mb-4 rounded-lg bg-primary p-4 shadow-md sm:flex sm:justify-start'>
+              className='mb-4 rounded-lg border border-gray-200 p-4 shadow-md sm:flex sm:justify-start'>
               <img
                 src={product?.images[0]}
                 alt='product-image'
-                className='w-full h-40 object-cover rounded-lg md:w-24 md:h-24'
+                className='w-full h-40 object-cover rounded-lg md:w-24 md:h-24 border border-gray-300'
               />
               <div className='sm:ml-4 sm:flex sm:w-full sm:justify-between'>
                 <div className='mt-3 sm:mt-0'>
-                  <h2 className='text-lg font-bold text-white'>
+                  <h2 className='text-lg font-bold text-primary'>
                     {product?.name}
                   </h2>
-                  <p className='text-sm text-white'>$ {product?.price}</p>
+                  <p className='text-sm text-primary-500'>$ {product?.price}</p>
                 </div>
                 <div className='mt-3 flex justify-between sm:space-y-4 sm:mt-0 sm:block sm:space-x-4'>
                   <div className='flex items-center border-gray-100'>
-                    <span className='cursor-pointer rounded-l bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50'>
-                      {' '}
-                      -{' '}
-                    </span>
+                    <button className='cursor-pointer rounded-l bg-secondary-500 text-white py-1 px-3 hover:bg-secondary'>
+                      -
+                    </button>
                     <input
                       className='h-8 w-8 border bg-white text-center text-xs outline-none'
                       type='text'
                       value={product?.orderQuantity}
                       min='1'
                     />
-                    <span className='cursor-pointer rounded-r bg-gray-100 py-1 px-3 duration-100 hover:bg-blue-500 hover:text-blue-50'>
-                      {' '}
-                      +{' '}
-                    </span>
+                    <button
+                      className='cursor-pointer rounded-r bg-secondary-500 text-white py-1 px-3 hover:bg-secondary'
+                      onClick={() => dispatch(increaseQuantity(product?._id))}>
+                      +
+                    </button>
                   </div>
                 </div>
               </div>

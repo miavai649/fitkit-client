@@ -40,18 +40,27 @@ export const cartSlice = createSlice({
           orderPrice: action.payload.price
         })
       }
-
-      // product added into redux local state
-      // state.push({
-      //   ...action.payload,
-
-      //   orderQuantity: 1,
-      //   orderPrice: action.payload.price
-      // })
+    },
+    increaseQuantity: (state, action) => {
+      const findProductById = state.find((item) => item._id === action.payload)
+      if (findProductById) {
+        findProductById.orderQuantity += 1
+        findProductById.orderPrice =
+          findProductById.orderQuantity * findProductById.price
+      }
+    },
+    decreaseQuantity: (state, action) => {
+      const findProductById = state.find((item) => item._id === action.payload)
+      if (findProductById) {
+        findProductById.orderQuantity -= 1
+        findProductById.orderPrice =
+          findProductById.orderQuantity * findProductById.price
+      }
     }
   }
 })
 
-export const { addToCart } = cartSlice.actions
+export const { addToCart, increaseQuantity, decreaseQuantity } =
+  cartSlice.actions
 
 export default cartSlice.reducer

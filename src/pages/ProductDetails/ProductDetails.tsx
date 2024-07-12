@@ -2,7 +2,7 @@ import { useGetSingleProductsQuery } from '@/redux/api/api'
 import { useParams } from 'react-router-dom'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
 import { PhotoProvider, PhotoView } from 'react-photo-view'
-import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { useAppDispatch } from '@/redux/hooks'
 import { addToCart } from '@/redux/features/cart/cartSlice'
 
 const ProductDetails = () => {
