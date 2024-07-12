@@ -1,10 +1,20 @@
-import { increaseQuantity } from '@/redux/features/cart/cartSlice'
+import { Button } from '@/components/ui/button'
+import {
+  decreaseQuantity,
+  increaseQuantity
+} from '@/redux/features/cart/cartSlice'
 import { useAppDispatch, useAppSelector } from '@/redux/hooks'
+import { TrashIcon } from '@heroicons/react/24/outline'
 
 const Cart = () => {
   const { cart } = useAppSelector((state) => state)
+  console.log('🚀 ~ Cart ~ cart:', cart)
 
   const dispatch = useAppDispatch()
+
+  const handleDecreaseQuantity = (id: string) => {
+    dispatch(decreaseQuantity(id))
+  }
 
   return (
     <div className='pt-10  mb-7 md:mb-14'>
@@ -17,22 +27,24 @@ const Cart = () => {
           {cart?.map((product) => (
             <div
               key={product?._id}
-              className='mb-4 rounded-lg border border-gray-200 p-4 shadow-md sm:flex sm:justify-start'>
+              className='mb-4 rounded-lg border border-gray-200 p-4 shadow-md sm:flex sm:justify-between'>
               <img
                 src={product?.images[0]}
                 alt='product-image'
                 className='w-full h-40 object-cover rounded-lg md:w-24 md:h-24 border border-gray-300'
               />
               <div className='sm:ml-4 sm:flex sm:w-full sm:justify-between'>
-                <div className='mt-3 sm:mt-0'>
+                <div className='mt-3 sm:mt-0 flex-grow'>
                   <h2 className='text-lg font-bold text-primary'>
                     {product?.name}
                   </h2>
                   <p className='text-sm text-primary-500'>$ {product?.price}</p>
                 </div>
-                <div className='mt-3 flex justify-between sm:space-y-4 sm:mt-0 sm:block sm:space-x-4'>
+                <div className='mt-3 flex items-center sm:space-x-4 sm:mt-0'>
                   <div className='flex items-center border-gray-100'>
-                    <button className='cursor-pointer rounded-l bg-secondary-500 text-white py-1 px-3 hover:bg-secondary'>
+                    <button
+                      className='cursor-pointer rounded-l bg-primary-500 text-white py-1 px-3 hover:bg-primary'
+                      onClick={() => handleDecreaseQuantity(product?._id)}>
                       -
                     </button>
                     <input
@@ -40,13 +52,23 @@ const Cart = () => {
                       type='text'
                       value={product?.orderQuantity}
                       min='1'
+                      readOnly
                     />
                     <button
-                      className='cursor-pointer rounded-r bg-secondary-500 text-white py-1 px-3 hover:bg-secondary'
+                      disabled={product?.orderQuantity === product?.quantity}
+                      className='cursor-pointer rounded-r bg-primary-500 text-white py-1 px-3 hover:bg-primary disabled:cursor-not-allowed disabled:bg-primary-300'
                       onClick={() => dispatch(increaseQuantity(product?._id))}>
                       +
                     </button>
                   </div>
+                  <Button
+                    variant={'outline'}
+                    size='icon'
+                    className='ml-4 border-secondary-500 cursor-pointer text-secondary-500 hover:text-secondary '
+                    // onClick={() => dispatch(removeFromCart(product?._id))}
+                  >
+                    <TrashIcon className='h-6 w-6' />
+                  </Button>
                 </div>
               </div>
             </div>
