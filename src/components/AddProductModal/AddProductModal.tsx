@@ -12,6 +12,9 @@ import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { useForm } from 'react-hook-form'
 import { PlusIcon } from '@heroicons/react/24/outline'
+import { useAddProductMutation } from '@/redux/api/api'
+import { toast } from 'sonner'
+import { useState } from 'react'
 
 export type TProduct = {
   _id?: string // Optional if you're adding a new product
@@ -28,21 +31,35 @@ const AddProductModal = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<TProduct>()
 
-  const onSubmit = (data: TProduct) => {
-    // Ensure price and quantity are numbers
+  const [addProduct] = useAddProductMutation()
+
+  const [open, setOpen] = useState(false)
+
+  const onSubmit = async (data: TProduct) => {
+    // converting price and quantity to number
     data.price = parseFloat(data.price.toString())
     data.quantity = parseInt(data.quantity.toString(), 10)
 
-    // Filter out empty strings from images array
+    // exclude empty string from images array
     data.images = data.images.filter((img) => img.trim() !== '')
 
-    console.log(data) // Log the form data upon submission
+    try {
+      const res = await addProduct({ data }).unwrap()
+      if (res?.success) {
+        toast.success(res?.message)
+
+        reset()
+      }
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button>
           <PlusIcon className='mr-2 h-4 w-4 text-white' /> Add Product
@@ -208,7 +225,9 @@ const AddProductModal = () => {
             </div>
           </div>
           <DialogFooter>
-            <Button type='submit'>Save changes</Button>
+            <Button type='submit' onClick={() => setOpen(false)}>
+              Save changes
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
