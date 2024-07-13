@@ -1,10 +1,9 @@
 import AddProductModal from '@/components/AddProductModal/AddProductModal'
-import { Button } from '@/components/ui/button'
+import DeleteConfirmationModal from '@/components/DeleteConfirmationModal/DeleteConfirmationModal'
 import { Skeleton } from '@/components/ui/skeleton'
 import UpdateProductModal from '@/components/UpdateProductModal/UpdateProductModal'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
-import { TrashIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 
 const ProductManagement = () => {
@@ -86,14 +85,7 @@ const ProductManagement = () => {
                     <td className='px-6 py-4 flex items-start gap-2 justify-center'>
                       <UpdateProductModal product={product} />
 
-                      <Button
-                        variant={'outline'}
-                        size='icon'
-                        className='ml-4 border-secondary-500 cursor-pointer text-secondary-500 hover:text-secondary '
-                        // onClick={() => dispatch(removeFromCart(product?._id))}
-                      >
-                        <TrashIcon className='h-4 w-4' />
-                      </Button>
+                      <DeleteConfirmationModal />
                     </td>
                   </tr>
                 </tbody>
