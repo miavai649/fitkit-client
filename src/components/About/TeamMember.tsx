@@ -29,7 +29,7 @@ const teamMembers = [
 const TeamMember = () => {
   return (
     <section className='my-8'>
-      <h3 className='text-2xl md:text-3xl font-semibold text-center mb-4'>
+      <h3 className='text-2xl md:text-3xl font-semibold text-center text-primary-500 mb-4'>
         Meet Our Team
       </h3>
       <div className='flex flex-wrap justify-center'>
@@ -39,10 +39,12 @@ const TeamMember = () => {
             className='m-4 p-6 bg-gray-200 rounded-lg shadow-lg max-w-xs text-center'>
             <img
               src={member.image}
-              alt='Team Member 1'
+              alt={member.name}
               className='w-24 h-24 mx-auto rounded-full mb-4'
             />
-            <h4 className='text-xl font-semibold mb-2'>{member.name}</h4>
+            <h4 className='text-xl font-semibold mb-2 text-primary-500'>
+              {member.name}
+            </h4>
             <p className='text-gray-700'>{member.title}</p>
             <p className='text-gray-600 text-sm mt-2'>{member.description}</p>
           </div>
