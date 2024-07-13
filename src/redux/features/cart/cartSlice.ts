@@ -60,8 +60,8 @@ export const cartSlice = createSlice({
     removeFromCart: (state, action) => {
       return state.filter((item) => item._id !== action.payload)
     },
-    orderComplete: (state) => {
-      return (state = [])
+    orderComplete: () => {
+      return []
     }
   }
 })

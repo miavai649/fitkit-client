@@ -14,7 +14,9 @@ const Footer = () => {
               <Link to={'/about'}>
                 <a className='hover:text-white'>About</a>
               </Link>
-              <a href='/contact' className='hover:text-white'>
+              <a
+                href='/mahmuduhaquenoor@gmail.com'
+                className='hover:text-white'>
                 Contact
               </a>
               <a href='/privacy' className='hover:text-white'>
