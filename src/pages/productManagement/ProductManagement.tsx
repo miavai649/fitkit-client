@@ -8,7 +8,7 @@ import React from 'react'
 
 const ProductManagement = () => {
   const { data: products, isLoading } = useGetAllProductsQuery({})
-  console.log('🚀 ~ ProductManagement ~ products:', products)
+  // console.log('🚀 ~ ProductManagement ~ products:', products)
 
   return (
     <section className='container mb-7 md:mb-14'>
