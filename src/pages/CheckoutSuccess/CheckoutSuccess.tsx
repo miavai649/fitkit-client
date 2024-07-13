@@ -1,3 +1,6 @@
+import { Button } from '@/components/ui/button'
+import { Link } from 'react-router-dom'
+
 const CheckoutSuccess = () => {
   return (
     <div className='flex items-center justify-center h-screen bg-gray-100'>
@@ -11,18 +14,17 @@ const CheckoutSuccess = () => {
         </svg>
         <div className='text-center'>
           <h3 className='text-2xl text-gray-900 font-semibold'>
-            Payment Done!
+            Order Placed Successfully!
           </h3>
           <p className='text-gray-600 my-2'>
-            Thank you for completing your secure online payment.
+            Thank you for your order. Cash on delivery is your payment method.
           </p>
-          <p>Have a great day!</p>
           <div className='py-10'>
-            <a
-              href='/'
-              className='px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-md'>
-              GO BACK
-            </a>
+            <Link to={'/'}>
+              <Button className='px-12 bg-primary hover:bg-primary-500 text-white font-semibold py-3 rounded-md'>
+                GO BACK
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

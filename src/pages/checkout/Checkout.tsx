@@ -1,8 +1,10 @@
-import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useAppSelector } from '@/redux/hooks'
+import { useAppDispatch, useAppSelector } from '@/redux/hooks'
 import { useOrderProductMutation } from '@/redux/api/api'
 import { TPayment } from '@/types'
+import { toast } from 'sonner'
+import { useNavigate } from 'react-router-dom'
+import { orderComplete } from '@/redux/features/cart/cartSlice'
 
 const Checkout = () => {
   const {
@@ -10,6 +12,10 @@ const Checkout = () => {
     handleSubmit,
     formState: { errors }
   } = useForm<TPayment>()
+
+  const navigate = useNavigate()
+
+  const dispatch = useAppDispatch()
 
   const { cart } = useAppSelector((state) => state)
 
@@ -26,11 +32,14 @@ const Checkout = () => {
       cart,
       totalPrice
     }
-    console.log('🚀 ~ onSubmit ~ orderData:', { orderData })
 
     try {
       const res = await orderProduct({ data: orderData }).unwrap()
-      console.log(res)
+      if (res?.success) {
+        toast.success('Order Placed Successfully')
+        navigate('/success')
+        dispatch(orderComplete())
+      }
     } catch (error) {
       console.log(error)
     }
