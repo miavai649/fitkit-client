@@ -85,7 +85,7 @@ const ProductManagement = () => {
                     <td className='px-6 py-4 flex items-start gap-2 justify-center'>
                       <UpdateProductModal product={product} />
 
-                      <DeleteConfirmationModal />
+                      <DeleteConfirmationModal id={product?._id} />
                     </td>
                   </tr>
                 </tbody>

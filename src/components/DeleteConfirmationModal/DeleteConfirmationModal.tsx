@@ -11,7 +11,23 @@ import {
 } from '@/components/ui/alert-dialog'
 import { Button } from '../ui/button'
 import { TrashIcon } from '@heroicons/react/24/outline'
-const DeleteConfirmationModal = () => {
+import { useDeleteProductMutation } from '@/redux/api/api'
+import { toast } from 'sonner'
+const DeleteConfirmationModal = ({ id }: { id: string }) => {
+  const [deleteProduct] = useDeleteProductMutation()
+
+  const handleDelete = async () => {
+    try {
+      const res = await deleteProduct({ id }).unwrap()
+      console.log('🚀 ~ handleDelete ~ res:', res)
+      if (res?.success) {
+        toast.success(res?.message)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
@@ -32,7 +48,7 @@ const DeleteConfirmationModal = () => {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <AlertDialogAction onClick={handleDelete}>Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
