@@ -19,7 +19,6 @@ const DeleteConfirmationModal = ({ id }: { id: string }) => {
   const handleDelete = async () => {
     try {
       const res = await deleteProduct({ id }).unwrap()
-      console.log('🚀 ~ handleDelete ~ res:', res)
       if (res?.success) {
         toast.success(res?.message)
       }

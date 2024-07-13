@@ -3,7 +3,9 @@ import qs from 'qs'
 
 export const baseApi = createApi({
   reducerPath: 'baseApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://fitkit-server.vercel.app/api'
+  }),
   tagTypes: ['product'],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
@@ -33,8 +35,6 @@ export const baseApi = createApi({
     }),
     getSingleProducts: builder.query({
       query: ({ id }) => {
-        // console.log('🚀 ~ category:', id)
-
         return {
           url: `/product/${id}`,
           method: 'GET'
@@ -67,8 +67,6 @@ export const baseApi = createApi({
     }),
     orderProduct: builder.mutation({
       query: ({ data }) => {
-        console.log('🚀 ~ data:', data)
-
         return {
           url: `/order`,
           method: 'POST',
