@@ -3,6 +3,7 @@ import About from '@/pages/about/About'
 import Cart from '@/pages/cart/Cart'
 import CategoryProducts from '@/pages/categoryProducts/CategoryProducts'
 import Checkout from '@/pages/checkout/Checkout'
+import CheckoutSuccess from '@/pages/CheckoutSuccess/CheckoutSuccess'
 import Home from '@/pages/home/Home'
 import ProductDetails from '@/pages/ProductDetails/ProductDetails'
 import ProductManagement from '@/pages/productManagement/ProductManagement'
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/checkout',
         element: <Checkout />
+      },
+      {
+        path: '/success',
+        element: <CheckoutSuccess />
       }
     ]
   }
