@@ -1,9 +1,10 @@
 import AddProductModal from '@/components/AddProductModal/AddProductModal'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
+import UpdateProductModal from '@/components/UpdateProductModal/UpdateProductModal'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/24/outline'
+import { TrashIcon } from '@heroicons/react/24/outline'
 import React from 'react'
 
 const ProductManagement = () => {
@@ -67,7 +68,7 @@ const ProductManagement = () => {
                       scope='row'
                       className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
                       <img
-                        className='w-12 h-12 object-cover rounded-full mx-auto'
+                        className='w-12 h-12 object-cover rounded-lg border mx-auto'
                         src={product?.images[0]}
                         alt=''
                       />
@@ -83,14 +84,8 @@ const ProductManagement = () => {
                       {product?.category.toUpperCase()}
                     </td>
                     <td className='px-6 py-4 flex items-start gap-2 justify-center'>
-                      <Button
-                        variant={'outline'}
-                        size='icon'
-                        className='ml-4 border-blue-500 cursor-pointer text-blue-500 hover:text-blue-700 '
-                        // onClick={() => dispatch(removeFromCart(product?._id))}
-                      >
-                        <PencilSquareIcon className='h-4 w-4' />
-                      </Button>
+                      <UpdateProductModal product={product} />
+
                       <Button
                         variant={'outline'}
                         size='icon'

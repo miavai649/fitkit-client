@@ -11,21 +11,21 @@ import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
 import { useForm } from 'react-hook-form'
-import { PlusIcon } from '@heroicons/react/24/outline'
-import { useAddProductMutation } from '@/redux/api/api'
+import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import { useUpdateProductMutation } from '@/redux/api/api'
 import { toast } from 'sonner'
 import { useState } from 'react'
-import { TProduct } from '@/types'
+import { TProduct, TUpdateProductModalProps } from '@/types'
 
-const AddProductModal = () => {
+const UpdateProductModal = ({ product }: TUpdateProductModalProps) => {
+  // console.log('🚀 ~ UpdateProductModal ~ product:', product)
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    reset
+    formState: { errors }
   } = useForm<TProduct>()
 
-  const [addProduct] = useAddProductMutation()
+  const [updateProduct] = useUpdateProductMutation()
 
   const [open, setOpen] = useState(false)
 
@@ -38,29 +38,32 @@ const AddProductModal = () => {
     data.images = data.images.filter((img) => img.trim() !== '')
 
     try {
-      const res = await addProduct({ data }).unwrap()
+      const res = await updateProduct({ id: product?._id, data }).unwrap()
       if (res?.success) {
         toast.success(res?.message)
         setOpen(false)
-        reset()
       }
     } catch (error) {
       console.error(error)
     }
   }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
-          <PlusIcon className='mr-2 h-4 w-4 text-white' /> Add Product
+        <Button
+          variant={'outline'}
+          size='icon'
+          className='ml-4 border-blue-500 cursor-pointer text-blue-500 hover:text-blue-700 '>
+          <PencilSquareIcon className='h-4 w-4' />
         </Button>
       </DialogTrigger>
       <DialogContent className='sm:max-w-[400px] md:max-w-[600px]'>
         <DialogHeader>
-          <DialogTitle>Add New Product</DialogTitle>
+          <DialogTitle>Update Product</DialogTitle>
           <DialogDescription>
-            Fill in the details of the new product you want to add. Click save
-            when you're done.
+            Fill in the details of the selected product you want to Update.
+            Click save when you're done.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -70,6 +73,7 @@ const AddProductModal = () => {
               <Label htmlFor='name'>Name</Label>
               <Input
                 id='name'
+                defaultValue={product?.name}
                 {...register('name', { required: 'Name is required' })}
                 className={`p-2 border ${
                   errors.name ? 'border-red-500' : 'border-gray-300'
@@ -87,6 +91,7 @@ const AddProductModal = () => {
               <Label htmlFor='description'>Description</Label>
               <Input
                 id='description'
+                defaultValue={product?.description}
                 {...register('description', {
                   required: 'Description is required'
                 })}
@@ -108,6 +113,7 @@ const AddProductModal = () => {
                 <div className='relative'>
                   <Input
                     id='price'
+                    defaultValue={product?.price}
                     type='number'
                     {...register('price', {
                       required: 'Price is required'
@@ -127,12 +133,27 @@ const AddProductModal = () => {
                 <Label htmlFor='category'>Category</Label>
                 <select
                   id='category'
+                  defaultValue={product?.category}
                   {...register('category')}
-                  className={`p-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
-                  <option value='weights'>Weights</option>
-                  <option value='cardio'>Cardio</option>
-                  <option value='gear'>Gear</option>
-                  <option value='apparel'>Apparel</option>
+                  className={`p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
+                  <option
+                    value='weights'
+                    selected={product?.category === 'weights'}>
+                    Weights
+                  </option>
+                  <option
+                    value='cardio'
+                    selected={product?.category === 'cardio'}>
+                    Cardio
+                  </option>
+                  <option value='gear' selected={product?.category === 'gear'}>
+                    Gear
+                  </option>
+                  <option
+                    value='apparel'
+                    selected={product?.category === 'apparel'}>
+                    Apparel
+                  </option>
                 </select>
               </div>
             </div>
@@ -144,6 +165,7 @@ const AddProductModal = () => {
                 <div className='relative'>
                   <Input
                     id='quantity'
+                    defaultValue={product?.quantity}
                     type='number'
                     {...register('quantity', {
                       required: 'Quantity is required'
@@ -163,10 +185,19 @@ const AddProductModal = () => {
                 <Label htmlFor='stock'>Stock Status</Label>
                 <select
                   id='stock'
+                  defaultValue={product?.stock}
                   {...register('stock')}
                   className={`p-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
-                  <option value='in-stock'>In Stock</option>
-                  <option value='out-stock'>Out of Stock</option>
+                  <option
+                    value='in-stock'
+                    selected={product?.stock === 'in-stock'}>
+                    In Stock
+                  </option>
+                  <option
+                    value='out-stock'
+                    selected={product?.stock === 'out-stock'}>
+                    Out of Stock
+                  </option>
                 </select>
               </div>
             </div>
@@ -176,12 +207,9 @@ const AddProductModal = () => {
               <Label htmlFor='images1'>Image 1</Label>
               <Input
                 id='images1'
+                defaultValue={product?.images[0]}
                 {...register('images.0', {
-                  required: 'At least one image is required',
-                  pattern: {
-                    value: /^https?:\/\/.+/,
-                    message: 'Please enter a valid URL'
-                  }
+                  required: 'At least one image is required'
                 })}
                 className={`p-2 border ${
                   errors.images?.[0] ? 'border-red-500' : 'border-gray-300'
@@ -197,6 +225,7 @@ const AddProductModal = () => {
               <Label htmlFor='images2'>Image 2</Label>
               <Input
                 id='images2'
+                defaultValue={product?.images[1]}
                 {...register('images.1')}
                 className='p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500'
               />
@@ -205,6 +234,7 @@ const AddProductModal = () => {
               <Label htmlFor='images3'>Image 3</Label>
               <Input
                 id='images3'
+                defaultValue={product?.images[2]}
                 {...register('images.2')}
                 className='p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500'
               />
@@ -213,13 +243,16 @@ const AddProductModal = () => {
               <Label htmlFor='images4'>Image 4</Label>
               <Input
                 id='images4'
+                defaultValue={product?.images[3]}
                 {...register('images.3')}
                 className='p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500'
               />
             </div>
           </div>
           <DialogFooter>
-            <Button type='submit'>Save changes</Button>
+            <Button type='submit' onClick={() => setOpen(false)}>
+              Save changes
+            </Button>
           </DialogFooter>
         </form>
       </DialogContent>
@@ -227,4 +260,4 @@ const AddProductModal = () => {
   )
 }
 
-export default AddProductModal
+export default UpdateProductModal

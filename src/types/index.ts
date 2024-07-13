@@ -43,3 +43,7 @@ export type TProductCardProps = {
   price: number
   delay: number
 }
+
+export type TUpdateProductModalProps = {
+  product: TProduct
+}
