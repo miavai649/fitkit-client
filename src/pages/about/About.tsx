@@ -1,34 +1,6 @@
 import CustomerTestimonials from '@/components/About/CustomerTestimonials'
 import TeamMember from '@/components/About/TeamMember'
-import { cmo, founder, hpd } from '@/assets'
 import ContactInfo from '@/components/About/ContactInfo'
-
-const teamMembers = [
-  {
-    id: 1,
-    name: 'John Doe',
-    title: 'CEO & Founder',
-    image: founder,
-    description:
-      'John has over 10 years of experience in the fitness industry and is passionate about helping others achieve their fitness goals.'
-  },
-  {
-    id: 2,
-    name: 'Jane Smith',
-    title: 'Head of Product',
-    image: hpd,
-    description:
-      "Jane is a passionate and creative woman who has worked in the fitness industry for over 8 years. She's always been driven to create innovative and sustainable products."
-  },
-  {
-    id: 3,
-    name: 'David Johnson',
-    title: 'Marketing & Sales',
-    image: cmo,
-    description:
-      "David is a creative and empathetic individual who has worked in the fitness industry for over 12 years. He's always been driven to help others achieve their fitness goals."
-  }
-]
 
 const About = () => {
   return (
