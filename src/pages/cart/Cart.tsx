@@ -130,7 +130,9 @@ const Cart = () => {
                 <p className='mb-1 text-lg font-bold'>${totalPrice} USD</p>
               </div>
             </div>
-            <button className='mt-4 w-full rounded-md bg-primary-500 py-1.5 font-medium text-blue-50 hover:bg-primary'>
+            <button
+              onClick={() => navigate('/checkout')}
+              className='mt-4 w-full rounded-md bg-primary-500 py-1.5 font-medium text-blue-50 hover:bg-primary'>
               Check out
             </button>
           </div>

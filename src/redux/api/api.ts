@@ -64,6 +64,18 @@ export const baseApi = createApi({
         method: 'DELETE'
       }),
       invalidatesTags: ['product']
+    }),
+    orderProduct: builder.mutation({
+      query: ({ data }) => {
+        console.log('🚀 ~ data:', data)
+
+        return {
+          url: `/order`,
+          method: 'POST',
+          body: data
+        }
+      },
+      invalidatesTags: ['product']
     })
   })
 })
@@ -74,5 +86,6 @@ export const {
   useGetSingleProductsQuery,
   useAddProductMutation,
   useUpdateProductMutation,
-  useDeleteProductMutation
+  useDeleteProductMutation,
+  useOrderProductMutation
 } = baseApi
