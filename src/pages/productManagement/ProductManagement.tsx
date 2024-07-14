@@ -51,7 +51,7 @@ const ProductManagement = () => {
           </thead>
 
           {/* products */}
-          {products?.data?.map((product: TProduct) => (
+          {products?.data?.products?.map((product: TProduct) => (
             <React.Fragment key={product?._id}>
               {isLoading ? (
                 <Skeleton className='h-48 md:h-64  rounded-lg' />
@@ -76,7 +76,6 @@ const ProductManagement = () => {
                       scope='row'
                       className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
                       {product?.name}
-                      Dumbbells
                     </th>
                     <td className='px-6 py-4'>${product?.price}</td>
                     <td className='px-6 py-4'>

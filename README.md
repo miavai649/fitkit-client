@@ -1,30 +1,62 @@
-# React + TypeScript + Vite
+# FitKit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+**FitKit** is a premier e-commerce shop specializing in high-quality fitness equipment and accessories for fitness freak person .
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Description
 
-## Expanding the ESLint configuration
+FitKit is an online platform that makes shopping for fitness gear easy and enjoyable. We offer a wide range of fitness equipment and accessories, carefully selected to suit different needs and preferences. Our website is designed to be simple to use, so customers can easily browse through our products, read detailed information, and make secure purchases.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- Admin can easily create a new product and also a existing product or delete a product.
+- Detailed Product Information: Each product comes with clear descriptions, images, and prices.
+- Search and Filter Options: Find what you need quickly with advanced search and filter tools.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+## Technology Stack
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- **Frontend:** React, Redux, Typescript
+- **Backend:** Node.js, Express, Typescript, Zod
+- **Database:** MongoDB
+- **Other:** Tailwind CSS, AOS, React-Router-Dom, React-icon, React-hot-toast
+
+## Installation Guideline
+
+### Prerequisites
+
+- Node.js (version v20.13.1)
+- npm or yarn
+- MongoDB
+
+### Installation Steps
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/abdullahal5/Assignment-4-client.git
+   cd Assignment-4-client
+   ```
+
+2. **Install dependencies**:
+   Using npm:
+
+   ```bash
+   npm install
+   ```
+
+   Using yarn:
+
+   ```bash
+   yarn install
+   ```
+
+3. **Run the project**:
+   Using npm:
+   ```bash
+   npm run dev
+   ```
+   Using yarn:
+   ```bash
+   yarn start dev
+   ```

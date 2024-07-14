@@ -8,18 +8,12 @@ import { TProduct } from '@/types'
 import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 
 const Products = () => {
-  // filter states
+  // filter states array
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
-  // sorting states
+  // sorting states string
   const [sort, setSort] = useState('')
-  // search state
+  // search state string
   const [searchTerm, setSearchTerm] = useState('')
-
-  const handleCategory = (category: string, checked: boolean) => {
-    setSelectedCategories((prev) =>
-      checked ? [...prev, category] : prev.filter((item) => item !== category)
-    )
-  }
 
   // get all products api fetched from rtk query
   const { data: products, isLoading } = useGetAllProductsQuery({
@@ -27,6 +21,11 @@ const Products = () => {
     categories: selectedCategories,
     sort
   })
+  const handleCategory = (category: string, checked: boolean) => {
+    setSelectedCategories((prev) =>
+      checked ? [...prev, category] : prev.filter((item) => item !== category)
+    )
+  }
 
   const debounce = (func: any, wait: number) => {
     let timeout: ReturnType<typeof setTimeout>
@@ -68,7 +67,7 @@ const Products = () => {
       </div>
       {/* Product grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
-        {products?.data?.map((product: TProduct, i: number) => (
+        {products?.data?.products?.map((product: TProduct, i: number) => (
           <div key={product?._id}>
             {isLoading ? (
               // if loading true ==> skeleton

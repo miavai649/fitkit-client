@@ -1,22 +1,25 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import qs from 'qs'
 
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://fitkit-server.vercel.app/api'
+    baseUrl: 'http://localhost:5000/api'
   }),
   tagTypes: ['product'],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
       query: ({ searchTerm, categories, sort }) => {
-        const queryUrl = qs.stringify(
-          { searchTerm, categories, sort },
-          { arrayFormat: 'comma', encode: false }
-        )
-        // console.log(queryUrl);
+        const params = new URLSearchParams()
+        if (searchTerm) params.append('searchTerm', searchTerm)
+        if (sort) params.append('sort', sort)
+        if (categories?.length) {
+          categories.forEach((category: string) =>
+            params.append('category', category)
+          )
+        }
+
         return {
-          url: `/product?${queryUrl}`,
+          url: `/product?${params.toString()}`,
           method: 'GET'
         }
       },

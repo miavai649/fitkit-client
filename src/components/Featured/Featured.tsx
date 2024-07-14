@@ -27,23 +27,25 @@ const Featured = () => {
         Top Picks for You
       </h3>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto my-5'>
-        {products?.data?.slice(0, 4).map((product: TProduct, i: number) => (
-          <div key={product?._id}>
-            {isLoading ? (
-              // if loading true ==> skeleton
-              <ProductCardSkeleton />
-            ) : (
-              // if loading false ==> product card
-              <ProductCard
-                id={product?._id}
-                name={product?.name}
-                images={product?.images}
-                price={product?.price}
-                delay={i * 150}
-              />
-            )}
-          </div>
-        ))}
+        {products?.data?.products
+          ?.slice(0, 4)
+          .map((product: TProduct, i: number) => (
+            <div key={product?._id}>
+              {isLoading ? (
+                // if loading true ==> skeleton
+                <ProductCardSkeleton />
+              ) : (
+                // if loading false ==> product card
+                <ProductCard
+                  id={product?._id}
+                  name={product?.name}
+                  images={product?.images}
+                  price={product?.price}
+                  delay={i * 150}
+                />
+              )}
+            </div>
+          ))}
       </div>
       <div className='text-center mt-8'>
         <Link to={'/products'}>
