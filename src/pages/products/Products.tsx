@@ -17,15 +17,13 @@ const Products = () => {
   const [searchTerm, setSearchTerm] = useState('')
   // pagination states
   const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(5)
 
   // get all products api fetched from rtk query
   const { data: products, isLoading } = useGetAllProductsQuery({
     searchTerm,
     categories: selectedCategories,
     sort,
-    page,
-    limit
+    page
   })
 
   const handleCategory = (category: string, checked: boolean) => {
@@ -51,11 +49,6 @@ const Products = () => {
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage)
-  }
-
-  const handleLimitChange = (newLimit: number) => {
-    setLimit(newLimit)
-    setPage(1) // Reset to the first page whenever the limit changes
   }
 
   return (
@@ -105,9 +98,7 @@ const Products = () => {
       <Pagination
         totalItems={products?.data?.total}
         currentPage={page}
-        itemsPerPage={limit}
         onPageChange={handlePageChange}
-        onLimitChange={handleLimitChange}
       />
     </section>
   )

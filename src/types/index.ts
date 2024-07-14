@@ -73,7 +73,5 @@ export type TPayment = {
 export interface IPaginationProps {
   totalItems?: number
   currentPage: number
-  itemsPerPage: number
   onPageChange: (page: number) => void
-  onLimitChange: (limit: number) => void
 }

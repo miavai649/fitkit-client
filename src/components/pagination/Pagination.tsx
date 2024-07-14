@@ -5,11 +5,9 @@ import React from 'react'
 const Pagination = ({
   totalItems = 0,
   currentPage,
-  itemsPerPage,
-  onPageChange,
-  onLimitChange
+  onPageChange
 }: IPaginationProps) => {
-  const totalPages = Math.ceil(totalItems / itemsPerPage)
+  const totalPages = Math.ceil(totalItems / 5)
 
   if (totalPages === 0) {
     return null // No pagination needed if there are no items
@@ -17,11 +15,6 @@ const Pagination = ({
 
   const handlePageClick = (page: number) => {
     onPageChange(page)
-  }
-
-  const handleLimitChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLimit = parseInt(e.target.value, 10)
-    onLimitChange(newLimit)
   }
 
   return (
@@ -41,18 +34,6 @@ const Pagination = ({
         disabled={currentPage === totalPages}>
         Next
       </button>
-      <div className='flex items-center ml-4'>
-        <span className='mr-2'>Items per page:</span>
-        <select
-          className='px-3 py-2 border rounded'
-          value={itemsPerPage}
-          onChange={handleLimitChange}>
-          <option value='5'>5</option>
-          <option value='10'>10</option>
-          <option value='20'>20</option>
-          <option value='50'>50</option>
-        </select>
-      </div>
     </div>
   )
 }

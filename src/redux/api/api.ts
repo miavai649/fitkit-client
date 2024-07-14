@@ -3,12 +3,12 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const baseApi = createApi({
   reducerPath: 'baseApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5000/api'
+    baseUrl: 'https://fitkit-server.vercel.app/api'
   }),
   tagTypes: ['product'],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: ({ searchTerm, categories, sort, page, limit }) => {
+      query: ({ searchTerm, categories, sort, page }) => {
         const params = new URLSearchParams()
         if (searchTerm) params.append('searchTerm', searchTerm)
         if (sort) params.append('sort', sort)
@@ -18,7 +18,6 @@ export const baseApi = createApi({
           )
         }
         if (page) params.append('page', page.toString())
-        if (limit) params.append('limit', limit.toString())
 
         return {
           url: `/product?${params.toString()}`,
