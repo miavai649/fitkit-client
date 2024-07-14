@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     {/* redux store */}
     <Provider store={store}>
       {/* toaster */}
-      <Toaster position='top-center' />
+      <Toaster position='bottom-center' />
       {/* routing */}
       <RouterProvider router={router} />
     </Provider>
