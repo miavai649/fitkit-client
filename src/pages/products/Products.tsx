@@ -8,6 +8,7 @@ import { TProduct } from '@/types'
 import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 import Pagination from '@/components/pagination/Pagination'
 import { Button } from '@/components/ui/button'
+import Spinner from '@/components/Spinner/Spinner'
 
 const Products = () => {
   // filter states array
@@ -52,6 +53,10 @@ const Products = () => {
     setPage(newPage)
   }
 
+  if (isLoading) {
+    return <Spinner />
+  }
+
   return (
     <section className='container mb-7 md:mb-14'>
       <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold my-10 text-center'>
@@ -88,21 +93,15 @@ const Products = () => {
       {/* Product grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
         {products?.data?.products?.map((product: TProduct, i: number) => (
-          <div key={product?._id}>
-            {isLoading ? (
-              // if loading true ==> skeleton
-              <ProductCardSkeleton />
-            ) : (
-              // if loading false ==> product card
-              <ProductCard
-                id={product?._id}
-                name={product?.name}
-                images={product?.images}
-                price={product?.price}
-                delay={i * 10}
-              />
-            )}
-          </div>
+          // if loading false ==> product card
+          <ProductCard
+            id={product?._id}
+            key={product?._id}
+            name={product?.name}
+            images={product?.images}
+            price={product?.price}
+            delay={i * 10}
+          />
         ))}
       </div>
       {/* Pagination */}
