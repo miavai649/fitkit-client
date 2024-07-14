@@ -69,3 +69,11 @@ export type TPayment = {
   cart: TProductCart[]
   totalPrice: number
 }
+
+export interface IPaginationProps {
+  totalItems?: number
+  currentPage: number
+  itemsPerPage: number
+  onPageChange: (page: number) => void
+  onLimitChange: (limit: number) => void
+}

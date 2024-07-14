@@ -6,6 +6,7 @@ import { useGetAllProductsQuery } from '@/redux/api/api'
 import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
 import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
+import Pagination from '@/components/pagination/Pagination'
 
 const Products = () => {
   // filter states array
@@ -14,13 +15,19 @@ const Products = () => {
   const [sort, setSort] = useState('')
   // search state string
   const [searchTerm, setSearchTerm] = useState('')
+  // pagination states
+  const [page, setPage] = useState(1)
+  const [limit, setLimit] = useState(5)
 
   // get all products api fetched from rtk query
   const { data: products, isLoading } = useGetAllProductsQuery({
     searchTerm,
     categories: selectedCategories,
-    sort
+    sort,
+    page,
+    limit
   })
+
   const handleCategory = (category: string, checked: boolean) => {
     setSelectedCategories((prev) =>
       checked ? [...prev, category] : prev.filter((item) => item !== category)
@@ -41,6 +48,15 @@ const Products = () => {
     }, 800),
     []
   )
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage)
+  }
+
+  const handleLimitChange = (newLimit: number) => {
+    setLimit(newLimit)
+    setPage(1) // Reset to the first page whenever the limit changes
+  }
 
   return (
     <section className='container mb-7 md:mb-14'>
@@ -85,6 +101,14 @@ const Products = () => {
           </div>
         ))}
       </div>
+      {/* Pagination */}
+      <Pagination
+        totalItems={products?.data?.total}
+        currentPage={page}
+        itemsPerPage={limit}
+        onPageChange={handlePageChange}
+        onLimitChange={handleLimitChange}
+      />
     </section>
   )
 }
