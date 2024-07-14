@@ -32,7 +32,7 @@ const ImgGallery = () => {
         </h3>
         <ResponsiveMasonry
           columnsCountBreakPoints={{ 350: 4 }}
-          className='mt-8'>
+          className='mt-8 cursor-pointer'>
           <Masonry gutter='1rem'>
             {images.map((image, i) => (
               <PhotoView key={i} src={image}>

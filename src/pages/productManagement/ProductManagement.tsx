@@ -47,9 +47,17 @@ const ProductManagement = () => {
         Product Management
       </h2>
       <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4'>
-        <AddProductModal />
+        <div className='flex justify-center md:justify-start'>
+          <AddProductModal />
+        </div>
 
-        <div>
+        <p className='text-2xl font-semibold text-center md:text-left'>
+          {products?.data?.total !== 0
+            ? `${products?.data?.total} Products`
+            : ' No products found.'}
+        </p>
+
+        <div className='flex justify-center md:justify-end'>
           <SearchBar
             searchTerm={searchTerm}
             debouncedSearch={debouncedSearch}

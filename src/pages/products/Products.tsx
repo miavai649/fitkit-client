@@ -90,19 +90,25 @@ const Products = () => {
       </div>
 
       {/* Product grid */}
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
-        {products?.data?.products?.map((product: TProduct, i: number) => (
-          // if loading false ==> product card
-          <ProductCard
-            id={product?._id}
-            key={product?._id}
-            name={product?.name}
-            images={product?.images}
-            price={product?.price}
-            delay={i * 10}
-          />
-        ))}
-      </div>
+      {products?.data?.products?.length === 0 ? (
+        <div className='text-center text-xl text-primary-400 mt-8'>
+          No products found.
+        </div>
+      ) : (
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
+          {products?.data?.products?.map((product: TProduct, i: number) => (
+            <ProductCard
+              id={product?._id}
+              key={product?._id}
+              name={product?.name}
+              images={product?.images}
+              price={product?.price}
+              delay={i * 10}
+            />
+          ))}
+        </div>
+      )}
+
       {/* Pagination */}
       <Pagination
         totalItems={products?.data?.total}
