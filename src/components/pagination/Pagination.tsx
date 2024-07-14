@@ -1,6 +1,5 @@
 // Pagination.tsx
 import { IPaginationProps } from '@/types'
-import React from 'react'
 
 const Pagination = ({
   totalItems = 0,
@@ -20,7 +19,7 @@ const Pagination = ({
   return (
     <div className='flex items-center justify-between mt-6 p-4 border-t border-gray-300'>
       <button
-        className='px-4 py-2 text-white bg-gray-600 rounded hover:bg-gray-700 disabled:bg-gray-400'
+        className='px-4 py-2 text-white bg-primary rounded hover:bg-primary-500 disabled:bg-gray-400'
         onClick={() => handlePageClick(currentPage - 1)}
         disabled={currentPage === 1}>
         Previous
@@ -29,7 +28,7 @@ const Pagination = ({
         Page {currentPage} of {totalPages}
       </span>
       <button
-        className='px-4 py-2 text-white bg-gray-600 rounded hover:bg-gray-700 disabled:bg-gray-400'
+        className='px-4 py-2 text-white bg-primary rounded hover:bg-primary-500 disabled:bg-gray-400'
         onClick={() => handlePageClick(currentPage + 1)}
         disabled={currentPage === totalPages}>
         Next

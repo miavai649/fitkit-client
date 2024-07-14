@@ -1,28 +1,55 @@
 import AddProductModal from '@/components/AddProductModal/AddProductModal'
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal/DeleteConfirmationModal'
+import Pagination from '@/components/pagination/Pagination'
+import SearchBar from '@/components/SearchBar/SearchBar'
 import { Skeleton } from '@/components/ui/skeleton'
 import UpdateProductModal from '@/components/UpdateProductModal/UpdateProductModal'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
-import React from 'react'
+import React, { useCallback, useState } from 'react'
 
 const ProductManagement = () => {
-  const { data: products, isLoading } = useGetAllProductsQuery({})
+  const [page, setPage] = useState(1)
+  const [searchTerm, setSearchTerm] = useState('')
+
+  const { data: products, isLoading } = useGetAllProductsQuery({
+    searchTerm,
+    page
+  })
   // console.log('🚀 ~ ProductManagement ~ products:', products)
+
+  const debounce = (func: any, wait: number) => {
+    let timeout: ReturnType<typeof setTimeout>
+    return (...args: any[]) => {
+      clearTimeout(timeout)
+      timeout = setTimeout(() => func(...args), wait)
+    }
+  }
+
+  const debouncedSearch = useCallback(
+    debounce((value: string) => {
+      setSearchTerm(value)
+    }, 800),
+    []
+  )
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage)
+  }
 
   return (
     <section className='container mb-7 md:mb-14'>
       <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold my-10 text-center'>
         Product Management
       </h2>
-      <div className='flex justify-between items-center mb-4 mb:mb-8'>
+      <div className='flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4'>
         <AddProductModal />
 
         <div>
-          <p className='text-lg font-semibold'>
-            {products?.data?.length}{' '}
-            {products?.data?.length === 1 ? 'Product' : 'Products'}
-          </p>
+          <SearchBar
+            searchTerm={searchTerm}
+            debouncedSearch={debouncedSearch}
+          />
         </div>
       </div>
       <div className=' relative overflow-x-auto sm:rounded-lg my-10 mt-8'>
@@ -93,6 +120,12 @@ const ProductManagement = () => {
           ))}
         </table>
       </div>
+      {/* pagination  */}
+      <Pagination
+        totalItems={products?.data?.total}
+        currentPage={page}
+        onPageChange={handlePageChange}
+      />
     </section>
   )
 }

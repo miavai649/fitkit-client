@@ -58,7 +58,7 @@ const UpdateProductModal = ({ product }: TUpdateProductModalProps) => {
           <PencilSquareIcon className='h-4 w-4' />
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[400px] md:max-w-[600px]'>
+      <DialogContent className='w-full max-h-[80vh] overflow-y-auto p-4 sm:max-w-[90%] md:max-w-[70%] lg:max-w-[50%] xl:max-w-[40%]'>
         <DialogHeader>
           <DialogTitle>Update Product</DialogTitle>
           <DialogDescription>

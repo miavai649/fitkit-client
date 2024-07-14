@@ -55,7 +55,7 @@ const AddProductModal = () => {
           <PlusIcon className='mr-2 h-4 w-4 text-white' /> Add Product
         </Button>
       </DialogTrigger>
-      <DialogContent className='sm:max-w-[400px] md:max-w-[600px]'>
+      <DialogContent className='w-full max-h-[80vh] overflow-y-auto p-4 sm:max-w-[90%] md:max-w-[70%] lg:max-w-[50%] xl:max-w-[40%]'>
         <DialogHeader>
           <DialogTitle>Add New Product</DialogTitle>
           <DialogDescription>
@@ -109,9 +109,7 @@ const AddProductModal = () => {
                   <Input
                     id='price'
                     type='number'
-                    {...register('price', {
-                      required: 'Price is required'
-                    })}
+                    {...register('price', { required: 'Price is required' })}
                     className={`p-2 border ${
                       errors.price ? 'border-red-500' : 'border-gray-300'
                     } rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}
@@ -128,7 +126,7 @@ const AddProductModal = () => {
                 <select
                   id='category'
                   {...register('category')}
-                  className={`p-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
+                  className='p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500'>
                   <option value='weights'>Weights</option>
                   <option value='cardio'>Cardio</option>
                   <option value='gear'>Gear</option>
@@ -164,7 +162,7 @@ const AddProductModal = () => {
                 <select
                   id='stock'
                   {...register('stock')}
-                  className={`p-2 border  rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500`}>
+                  className='p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500'>
                   <option value='in-stock'>In Stock</option>
                   <option value='out-stock'>Out of Stock</option>
                 </select>
