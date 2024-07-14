@@ -59,3 +59,7 @@ FitKit is an online platform that makes shopping for fitness gear easy and enjoy
    ```bash
    yarn start dev
    ```
+
+## Live URL
+
+[Click here](https://fitkit-client.vercel.app/)
