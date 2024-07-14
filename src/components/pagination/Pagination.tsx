@@ -6,7 +6,7 @@ const Pagination = ({
   currentPage,
   onPageChange
 }: IPaginationProps) => {
-  const totalPages = Math.ceil(totalItems / 5)
+  const totalPages = Math.ceil(totalItems / 12)
 
   if (totalPages === 0) {
     return null // No pagination needed if there are no items

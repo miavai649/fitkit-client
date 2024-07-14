@@ -132,6 +132,17 @@ const Checkout = () => {
             </span>
           )}
         </div>
+
+        {/* Total Price Section */}
+        <div className='mb-4'>
+          <label className='block text-lg font-medium text-gray-700'>
+            Total Price
+          </label>
+          <div className='mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md bg-gray-100 text-gray-800'>
+            ${totalPrice}
+          </div>
+        </div>
+
         <div className='mt-6'>
           <button
             type='submit'

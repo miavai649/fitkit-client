@@ -5,7 +5,6 @@ import SortingDropdownMenu from '@/components/SortingDropdownMenu/SortingDropdow
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
-import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 import Pagination from '@/components/pagination/Pagination'
 import { Button } from '@/components/ui/button'
 import Spinner from '@/components/Spinner/Spinner'

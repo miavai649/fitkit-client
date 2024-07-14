@@ -2,11 +2,11 @@ import AddProductModal from '@/components/AddProductModal/AddProductModal'
 import DeleteConfirmationModal from '@/components/DeleteConfirmationModal/DeleteConfirmationModal'
 import Pagination from '@/components/pagination/Pagination'
 import SearchBar from '@/components/SearchBar/SearchBar'
-import { Skeleton } from '@/components/ui/skeleton'
+import Spinner from '@/components/Spinner/Spinner'
 import UpdateProductModal from '@/components/UpdateProductModal/UpdateProductModal'
 import { useGetAllProductsQuery } from '@/redux/api/api'
 import { TProduct } from '@/types'
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 
 const ProductManagement = () => {
   const [page, setPage] = useState(1)
@@ -35,6 +35,10 @@ const ProductManagement = () => {
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage)
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -79,44 +83,36 @@ const ProductManagement = () => {
 
           {/* products */}
           {products?.data?.products?.map((product: TProduct) => (
-            <React.Fragment key={product?._id}>
-              {isLoading ? (
-                <Skeleton className='h-48 md:h-64  rounded-lg' />
-              ) : (
-                <tbody>
-                  <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 text-center dark:hover:bg-gray-600'>
-                    <th
-                      scope='row'
-                      className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                      {product?._id.slice(-4)}
-                    </th>
-                    <th
-                      scope='row'
-                      className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                      <img
-                        className='w-12 h-12 object-cover rounded-lg border mx-auto'
-                        src={product?.images[0]}
-                        alt=''
-                      />
-                    </th>
-                    <th
-                      scope='row'
-                      className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
-                      {product?.name}
-                    </th>
-                    <td className='px-6 py-4'>${product?.price}</td>
-                    <td className='px-6 py-4'>
-                      {product?.category.toUpperCase()}
-                    </td>
-                    <td className='px-6 py-4 flex items-start gap-2 justify-center'>
-                      <UpdateProductModal product={product} />
+            <tbody key={product?._id}>
+              <tr className='bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 text-center dark:hover:bg-gray-600'>
+                <th
+                  scope='row'
+                  className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+                  {product?._id.slice(-4)}
+                </th>
+                <th
+                  scope='row'
+                  className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+                  <img
+                    className='w-12 h-12 object-cover rounded-lg border mx-auto'
+                    src={product?.images[0]}
+                    alt=''
+                  />
+                </th>
+                <th
+                  scope='row'
+                  className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>
+                  {product?.name}
+                </th>
+                <td className='px-6 py-4'>${product?.price}</td>
+                <td className='px-6 py-4'>{product?.category.toUpperCase()}</td>
+                <td className='px-6 py-4 flex items-start gap-2 justify-center'>
+                  <UpdateProductModal product={product} />
 
-                      <DeleteConfirmationModal id={product?._id} />
-                    </td>
-                  </tr>
-                </tbody>
-              )}
-            </React.Fragment>
+                  <DeleteConfirmationModal id={product?._id} />
+                </td>
+              </tr>
+            </tbody>
           ))}
         </table>
       </div>
