@@ -108,7 +108,7 @@ const AddProductModal = () => {
                 <div className='relative'>
                   <Input
                     id='price'
-                    type='number'
+                    type='text'
                     {...register('price', { required: 'Price is required' })}
                     className={`p-2 border ${
                       errors.price ? 'border-red-500' : 'border-gray-300'

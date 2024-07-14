@@ -114,7 +114,7 @@ const UpdateProductModal = ({ product }: TUpdateProductModalProps) => {
                   <Input
                     id='price'
                     defaultValue={product?.price}
-                    type='number'
+                    type='text'
                     {...register('price', {
                       required: 'Price is required'
                     })}
@@ -250,9 +250,7 @@ const UpdateProductModal = ({ product }: TUpdateProductModalProps) => {
             </div>
           </div>
           <DialogFooter>
-            <Button type='submit' onClick={() => setOpen(false)}>
-              Save changes
-            </Button>
+            <Button type='submit'>Save changes</Button>
           </DialogFooter>
         </form>
       </DialogContent>
