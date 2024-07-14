@@ -12,15 +12,12 @@ const Footer = () => {
             </div>
             <div className='flex space-x-4'>
               <Link to={'/about'}>
-                <a className='hover:text-white'>About</a>
+                <a className='hover:text-secondary-500'>About</a>
               </Link>
               <a
-                href='/mahmuduhaquenoor@gmail.com'
-                className='hover:text-white'>
+                href='mailto:mahmudulhaquenoor@gmail.com'
+                className='hover:text-secondary-500'>
                 Contact
-              </a>
-              <a href='/privacy' className='hover:text-white'>
-                Privacy Policy
               </a>
             </div>
           </div>

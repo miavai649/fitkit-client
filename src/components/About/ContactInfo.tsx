@@ -11,13 +11,13 @@ const ContactInfo = () => {
         </p>
         <div className='flex flex-col items-center space-y-4'>
           <p className='leading-relaxed'>
-            <strong>Email:</strong> info@fitkit.com
+            <strong>Email:</strong> mahmudulhaquenoor@gmail.com
           </p>
           <p className='leading-relaxed'>
-            <strong>Phone:</strong> +1-123-456-7890
+            <strong>Phone:</strong> +8801603491969
           </p>
           <p className='leading-relaxed'>
-            <strong>Address:</strong> 123 Fitness Ave, New York, NY, 10001
+            <strong>Address:</strong> 123 Savar New Market, Savar, Dhaka, 1340
           </p>
         </div>
       </div>
