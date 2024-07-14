@@ -7,6 +7,7 @@ import ProductCard from '@/components/Product/ProductCard'
 import { TProduct } from '@/types'
 import ProductCardSkeleton from '@/components/Product/ProductCardSkeleton'
 import Pagination from '@/components/pagination/Pagination'
+import { Button } from '@/components/ui/button'
 
 const Products = () => {
   // filter states array
@@ -56,24 +57,34 @@ const Products = () => {
       <h2 className='text-3xl md:text-4xl lg:text-5xl font-bold my-10 text-center'>
         Discover Our Wide Range of Products
       </h2>
-      <div className='flex justify-between mb-4 mb:mb-8'>
-        {/* Filter button */}
-        <FilteringDropdownMenu
-          selectedCategories={selectedCategories}
-          handleCategory={handleCategory}
-        />
+      <div className='flex flex-col md:flex-row justify-between mb-4 md:mb-8 gap-4'>
+        <div className='flex flex-col sm:flex-row gap-3'>
+          {/* Filter button */}
+          <FilteringDropdownMenu
+            selectedCategories={selectedCategories}
+            handleCategory={handleCategory}
+          />
 
-        <div className='flex gap-4'>
-          {/* search bar */}
+          {/* Clear filtering */}
+          <Button
+            className='bg-primary text-white'
+            onClick={() => setSelectedCategories([])}>
+            Clear Filter
+          </Button>
+        </div>
+
+        <div className='flex flex-col sm:flex-row gap-4'>
+          {/* Search bar */}
           <SearchBar
             searchTerm={searchTerm}
             debouncedSearch={debouncedSearch}
           />
 
-          {/* sorting product */}
+          {/* Sorting product */}
           <SortingDropdownMenu sort={sort} setSort={setSort} />
         </div>
       </div>
+
       {/* Product grid */}
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-8'>
         {products?.data?.products?.map((product: TProduct, i: number) => (
